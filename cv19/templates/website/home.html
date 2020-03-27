@@ -14,33 +14,38 @@
 	map.zoomControl = new am4maps.ZoomControl();
 	map.zoomControl.slider.height = 200;
 	map.panBehavior = "rotateLongLat";
-	map.geodata = am4geodata_worldHigh;
+	map.geodata = am4geodata_worldIndiaHigh;
 	map.projection = new am4maps.projections.Orthographic();
 
-	var polygonSeries = new am4maps.MapPolygonSeries();
-	polygonSeries.useGeodata = true;
-	// polygonSeries.exclude = ["IN"];
-	polygonSeries.data = [{
-	  "id": "ZM",
-	  "name": "Zimbabwe",
-	  "value": 100,
-	  "fill": am4core.color("#F05C5C")
-	}, {
-	  "id": "IN",
-	  "name": "India",
-	  "value": 50,
-	  "fill": am4core.color("#5C5CFF")
-	}];
+	var worldSeries = map.series.push(new am4maps.MapPolygonSeries());
+	worldSeries.useGeodata = true;
 
-	map.series.push(polygonSeries);
+	var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
+	indiaSeries.geodata = am4geodata_india2019High;
 
-	var polygonTemplate = polygonSeries.mapPolygons.template;
-	polygonTemplate.tooltipText = "{name}";
-	polygonTemplate.propertyFields.fill = "fill";
-	polygonTemplate.fill = am4core.color("#74B266");
+	// worldSeries.data = [{
+	//   "id": "IN",
+	//   "name": "India",
+	//   "value": 50,
+	//   "fill": am4core.color("#ff9933")
+	// }];
+	// worldTemplate.propertyFields.fill = "fill";
 
-	var hs = polygonTemplate.states.create("hover");
+	map.series.push(worldSeries);
+
+	var worldTemplate = worldSeries.mapPolygons.template;
+	worldTemplate.tooltipText = "{name}";
+	worldTemplate.fill = am4core.color("#5C5CFF");
+
+	var indiaTemplate = indiaSeries.mapPolygons.template;
+	indiaTemplate.tooltipText = "{NAME}";
+	indiaTemplate.fill = am4core.color('#ff9933');
+
+	var hs = worldTemplate.states.create("hover");
 	hs.properties.fill = am4core.color("#000000");
+
+	var ihs = indiaTemplate.states.create("hover");
+	ihs.properties.fill = am4core.color("#000000");
 
 
 </script>
