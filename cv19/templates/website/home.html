@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+	<div id="chartdiv" style="width: 800; height: 800px;"></div>
+
+</div>
+
+<script>
+
+	var map = am4core.create("chartdiv", am4maps.MapChart);
+	map.zoomControl = new am4maps.ZoomControl();
+	map.zoomControl.slider.height = 200;
+	map.panBehavior = "rotateLongLat";
+	map.geodata = am4geodata_worldHigh;
+	map.projection = new am4maps.projections.Orthographic();
+
+	var polygonSeries = new am4maps.MapPolygonSeries();
+	polygonSeries.useGeodata = true;
+	// polygonSeries.exclude = ["IN"];
+	polygonSeries.data = [{
+	  "id": "ZM",
+	  "name": "Zimbabwe",
+	  "value": 100,
+	  "fill": am4core.color("#F05C5C")
+	}, {
+	  "id": "IN",
+	  "name": "India",
+	  "value": 50,
+	  "fill": am4core.color("#5C5CFF")
+	}];
+
+	map.series.push(polygonSeries);
+
+	var polygonTemplate = polygonSeries.mapPolygons.template;
+	polygonTemplate.tooltipText = "{name}";
+	polygonTemplate.propertyFields.fill = "fill";
+	polygonTemplate.fill = am4core.color("#74B266");
+
+	var hs = polygonTemplate.states.create("hover");
+	hs.properties.fill = am4core.color("#000000");
+
+
+</script>
+
+{% endblock %}
