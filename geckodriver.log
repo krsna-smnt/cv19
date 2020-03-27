@@ -1163,3 +1163,88 @@ JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't fin
 console.error: services.settings: 
   Message: TypeError: NetworkError when attempting to fetch resource.
 JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=9846443038367678596&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=7971708861624967353&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=7146095279605717193&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=7014593545027705458&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=6963924647716647025&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=13618655517817828964&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+1585328454281	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileKmfdcf"
+*** You are running in headless mode.
+1585328461180	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1585328462967	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1585328462968	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1585328462968	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1585328462969	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+[2020-03-27T17:01:12Z ERROR audio_thread_priority::rt_linux] setrlimit64: 1
+1585328479442	Marionette	INFO	Listening on port 37269
+1585328479540	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+1585328651842	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileBRdJIz"
+*** You are running in headless mode.
+1585328655729	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1585328657150	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1585328657150	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1585328657151	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1585328657151	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+[2020-03-27T17:04:21Z ERROR audio_thread_priority::rt_linux] setrlimit64: 1
+1585328666169	Marionette	INFO	Listening on port 36349
+1585328666222	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+1585328849122	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMEbQLu"
+*** You are running in headless mode.
+1585328854517	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1585328856147	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1585328856147	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1585328856147	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1585328856147	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+[2020-03-27T17:07:40Z ERROR audio_thread_priority::rt_linux] setrlimit64: 1
+1585328863628	Marionette	INFO	Listening on port 43905
+1585328863890	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=9596375952257828269&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+1585329065446	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileAqRf57"
+*** You are running in headless mode.
+1585329076120	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1585329080548	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1585329080548	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1585329080549	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1585329080549	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+[2020-03-27T17:11:27Z ERROR audio_thread_priority::rt_linux] setrlimit64: 1
+1585329092814	Marionette	INFO	Listening on port 33951
+1585329092969	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=13711327946776443074&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+1585329556723	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileV5vOFY"
+*** You are running in headless mode.
+1585329563917	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1585329565245	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1585329565246	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1585329565246	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1585329565246	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+[2020-03-27T17:19:32Z ERROR audio_thread_priority::rt_linux] setrlimit64: 1
+1585329580893	Marionette	INFO	Listening on port 36995
+1585329581167	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+1585329607436	Marionette	INFO	Stopped listening on port 36995
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x8000D,name=PBackgroundIDBDatabase::Msg_Invalidate) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x8000E,name=PBackgroundIDBDatabase::Msg_CloseAfterInvalidationComplete) Channel error: cannot send/recv
+
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+1585329928240	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileSRocvH"
+*** You are running in headless mode.
+1585329930603	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1585329932776	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1585329932777	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1585329932777	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1585329932777	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+[2020-03-27T17:25:40Z ERROR audio_thread_priority::rt_linux] setrlimit64: 1
+1585329942102	Marionette	INFO	Listening on port 38425
+1585329942115	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+1585329956281	Marionette	INFO	Stopped listening on port 38425
+JavaScript error: , line 0: SecurityError: The operation is insecure.

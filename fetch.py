@@ -13,6 +13,7 @@ import signal
 import time 
 
 import csv
+from heat_color_reference import normalize0_1, rgb_vals
 
 driver = None
 url = "https://covindia.com/"
@@ -49,8 +50,6 @@ def init_driver():
 
 
 def unpack_info(info):
-	global tot
-	global infe
 	district_name = ""
 	infected_str = ""
 	dead_str = ""
@@ -82,12 +81,18 @@ def unpack_info(info):
 	#Format:
 	# [district-name (type: string), infected (type: int), dead (type: int), district_details (type: string)]
 	ret = [district_name, int(infected_str), int(dead_n_str), dead_str]
+
 	return ret
 
 
 
 
 def retrieve():
+	max_infected = 0
+	max_dead = 0
+
+	min_infected = 99999999
+	min_dead = 99999999
 	if not init_driver():
 		print("Failed to initialize")
 		return
@@ -105,11 +110,26 @@ def retrieve():
 	datetime_obj = datetime.now()
 	datetime_stamp = datetime_obj.strftime("%d-%b-%Y_%H:%M")
 
-	f = csv.writer(open("India_" + datetime_stamp + ".csv" , "w"))
+	f = csv.writer(open("datasets_India_" + datetime_stamp + ".csv" , "w"))
+	g = csv.writer(open("color_codes_India_" + datetime_stamp + ".csv" , "w"))
 
 	for district in districts_set:
-		f.writerow(unpack_info(district))
-		print(unpack_info(district))
+		ret = unpack_info(district)
+		max_infected = max(max_infected, ret[1])
+		min_infected = min(min_infected, ret[1])
+
+		max_dead = max(max_dead, ret[2])
+		min_dead = min(min_dead, ret[2])
+
+	for district in districts_set:
+		ret = unpack_info(district)
+		infected_color = rgb_vals(normalize0_1(ret[1], max_infected, min_infected))
+		dead_color = rgb_vals(normalize0_1(ret[2], max_dead, min_dead))
+		color_list = [ret[0], infected_color, dead_color]
+		f.writerow(ret)
+		g.writerow(color_list)
+		print(ret)
+		#print(color_list)
 
 
 
