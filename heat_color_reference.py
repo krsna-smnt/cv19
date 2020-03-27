@@ -14,8 +14,8 @@ def rgb_vals(data_point):
 	return '#' + R + G + B
 
 
-if __name__ == "__main__":
-	print(rgb_vals(0.5))
+#if __name__ == "__main__":
+#	print(rgb_vals(0.5))
 
 
 
