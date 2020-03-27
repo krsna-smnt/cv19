@@ -18,6 +18,7 @@ driver = None
 url = "https://covindia.com/"
 
 
+
 def stop_handler(sig, frame):
 	print("Quit")
 	driver.quit()
@@ -46,7 +47,10 @@ def init_driver():
 		return False
 
 
+
 def unpack_info(info):
+	global tot
+	global infe
 	district_name = ""
 	infected_str = ""
 	dead_str = ""
@@ -55,7 +59,7 @@ def unpack_info(info):
 	
 	district_name = inter[0].strip()
 
-	if len(inter) == 3:
+	if len(inter) > 1:
 		inter[1] = inter[1].replace("Infected:", "")
 		inter[2] = inter[2].replace("Deaths:", "")
 		infected_str = inter[1].strip()
@@ -78,7 +82,6 @@ def unpack_info(info):
 	#Format:
 	# [district-name (type: string), infected (type: int), dead (type: int), district_details (type: string)]
 	ret = [district_name, int(infected_str), int(dead_n_str), dead_str]
-
 	return ret
 
 
@@ -100,7 +103,7 @@ def retrieve():
 
 	
 	datetime_obj = datetime.now()
-	datetime_stamp = datetime_obj.strftime("%d-%b-%Y %H:%M")
+	datetime_stamp = datetime_obj.strftime("%d-%b-%Y_%H:%M")
 
 	f = csv.writer(open("India_" + datetime_stamp + ".csv" , "w"))
 
