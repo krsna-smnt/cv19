@@ -1142,3 +1142,24 @@ JavaScript warning: https://www.worldometers.info/coronavirus/, line 12560: unre
 1585317878048	Marionette	INFO	Stopped listening on port 37457
 JavaScript error: https://eus.rubiconproject.com/usync.html?gdpr=0&gdpr_consent=, line 12: SecurityError: The operation is insecure.
 JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=2522456748251803815&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=8864809837300480441&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=2831473455016098505&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: , line 0: SecurityError: The operation is insecure.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://tpc.googlesyndication.com/sadbundle/$csp%3Der3$/11232283389524302712/index.html#t=9846443038367678596&p=https%3A%2F%2Ftpc.googlesyndication.com, line 173: TypeError: studio.Enabler is undefined
