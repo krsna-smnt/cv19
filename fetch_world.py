@@ -13,6 +13,7 @@ import signal
 import time 
 
 import csv
+from heat_color_reference import normalize0_1, rgb_vals
 
 driver = None
 url = "https://www.worldometers.info/coronavirus/"
@@ -72,6 +73,11 @@ def unpack_info(info):
 
 
 def retrieve():
+	max_infected_ppm = 0.00
+	max_dead_ppm = 0.00
+
+	min_infected_ppm = 999999.99
+	min_dead_ppm = 999999.99
 	if not init_driver():
 		print("Failed to initialize")
 		return
@@ -90,11 +96,26 @@ def retrieve():
 	datetime_obj = datetime.now()
 	datetime_stamp = datetime_obj.strftime("%d-%b-%Y_%H:%M")
 
-	f = csv.writer(open("World_" + datetime_stamp + ".csv" , "w"))
+	f = csv.writer(open("datasets_World_" + datetime_stamp + ".csv" , "w"))
+	g = csv.writer(open("color_codes_World_" + datetime_stamp + ".csv" , "w"))
 
 	for item in items_set:
-		f.writerow(unpack_info(item))
-		print(unpack_info(item))
+		ret = unpack_info(item)
+		max_infected_ppm = max(max_infected_ppm, ret[len(ret) - 2])
+		min_infected_ppm = min(min_infected_ppm, ret[len(ret) - 2])
+
+		max_dead_ppm = max(max_dead_ppm, ret[len(ret) - 1])
+		min_dead_ppm = min(min_dead_ppm, ret[len(ret) - 1])
+
+	for item in items_set:
+		ret = unpack_info(item)
+		infected_ppm_color = rgb_vals(normalize0_1(ret[len(ret) - 2], max_infected_ppm, min_infected_ppm))
+		dead_ppm_color = rgb_vals(normalize0_1(ret[len(ret) - 1], max_dead_ppm, min_dead_ppm))
+		color_list = [ret[0], infected_ppm_color, dead_ppm_color]
+		f.writerow(ret)
+		g.writerow(color_list)
+		print(ret)
+		#print(color_list)
 
 
 if __name__ == "__main__":
