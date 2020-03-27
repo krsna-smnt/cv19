@@ -6,13 +6,16 @@ from selenium.webdriver.common.by import By
 
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
-
+from datetime import datetime
+import string
 import sys
 import signal
 import time 
 
+import csv
+
 driver = None
-requiredURL = "https://time.is/GMT"
+url = "https://covindia.com/"
 
 
 def stop_handler(sig, frame):
@@ -28,7 +31,7 @@ def pause_handler(signum, frame):
 signal.signal(signal.SIGTSTP, pause_handler)
 
 
-def initDriver():
+def init_driver():
 	try:
 		global driver
 
@@ -36,35 +39,79 @@ def initDriver():
 		options.headless = True
 
 		driver = webdriver.Firefox(options=options)
-		driver.get(requiredURL)
+		driver.get(url)
 
 		return True
 	except:
 		return False
 
 
-def getTime():
-	if not initDriver():
+def unpack_info(info):
+	district_name = ""
+	infected_str = ""
+	dead_str = ""
+	info = info.replace("\"","")
+	inter = info.split('|')
+	
+	district_name = inter[0].strip()
+
+	if len(inter) == 3:
+		inter[1] = inter[1].replace("Infected:", "")
+		inter[2] = inter[2].replace("Deaths:", "")
+		infected_str = inter[1].strip()
+		dead_str = inter[2].strip()
+
+	else:
+		infected_str = dead_str = "0"
+
+	#Final touches
+	dead_n_str = ""
+	for c in dead_str:
+		if c in "1234567890":
+			dead_n_str += c
+		else:
+			break
+	dead_str = dead_str.replace(dead_n_str, "")
+	dead_str.strip()
+	dead_n_str.strip()
+
+	#Format:
+	# [district-name (type: string), infected (type: int), dead (type: int), district_details (type: string)]
+	ret = [district_name, int(infected_str), int(dead_n_str), dead_str]
+
+	return ret
+
+
+
+
+def retrieve():
+	if not init_driver():
 		print("Failed to initialize")
 		return
 
-	timeDiv = driver.find_element_by_id('clock')
-	time = lambda: timeDiv.find_elements_by_tag_name('span')
-	while True:
-		try:
-			rightNow = ""
-			for character in time():
-				rightNow += str(character.get_attribute('innerHTML'))
+	items = driver.find_elements_by_class_name("clickable")
+	items_set = list(set(items))
+	districts = []
 
-			print (rightNow, end='\r')
-		except Exception as e:
-			# print(e.__class__.__name__)
-			pass
+	for item in items_set:
+		districts.append(item.text)
+	districts_set = list(set(districts))
+	print("%d administrative entities found\n" % len(districts_set))
+
+	
+	datetime_obj = datetime.now()
+	datetime_stamp = datetime_obj.strftime("%d-%b-%Y %H:%M")
+
+	f = csv.writer(open("India_" + datetime_stamp + ".csv" , "w"))
+
+	for district in districts_set:
+		f.writerow(unpack_info(district))
+		print(unpack_info(district))
+
 
 
 if __name__ == "__main__":
-	getTime()
-
+	retrieve()
 	try:
 		driver.quit()
 	except Exception as e:
