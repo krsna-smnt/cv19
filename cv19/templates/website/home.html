@@ -23,29 +23,30 @@
 	var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
 	indiaSeries.geodata = am4geodata_india2019High;
 
-	// worldSeries.data = [{
-	//   "id": "IN",
-	//   "name": "India",
-	//   "value": 50,
-	//   "fill": am4core.color("#ff9933")
-	// }];
-	// worldTemplate.propertyFields.fill = "fill";
+	var lst = [];
+	{% for country in countries %}
+
+		lst.push({"id": "{{ country.code }}", "fill": am4core.color("{{ country.infected_color }}")});
+
+	{% endfor %}
+
+	worldSeries.data = lst;
 
 	map.series.push(worldSeries);
 
 	var worldTemplate = worldSeries.mapPolygons.template;
-	worldTemplate.tooltipText = "{name}";
-	worldTemplate.fill = am4core.color("#5C5CFF");
+	worldTemplate.tooltipText = "{id}";
+	worldTemplate.fill = am4core.color("#bbbbbb");
+	worldTemplate.propertyFields.fill = "fill";
 
 	var indiaTemplate = indiaSeries.mapPolygons.template;
-	indiaTemplate.tooltipText = "{NAME}";
-	indiaTemplate.fill = am4core.color('#ff9933');
+	indiaTemplate.tooltipText = "{name}";
 
 	var hs = worldTemplate.states.create("hover");
-	hs.properties.fill = am4core.color("#000000");
+	hs.properties.fill = am4core.color("#770000");
 
 	var ihs = indiaTemplate.states.create("hover");
-	ihs.properties.fill = am4core.color("#000000");
+	ihs.properties.fill = am4core.color("#ff9933");
 
 
 </script>
