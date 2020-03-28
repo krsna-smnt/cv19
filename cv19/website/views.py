@@ -11,7 +11,7 @@ def home(request):
 
 
 def saveCountries(request):
-	f = open(settings.MEDIA_ROOT + "color_codes_World_27-Mar-2020_23:41.csv")
+	f = open(settings.MEDIA_ROOT + "color_codes_World_28-Mar-2020_15:11.csv")
 
 	for line in f.readlines():
 		lst = line.split(',')
@@ -28,7 +28,7 @@ def saveCountries(request):
 
 
 def saveSubregions(request):
-	f = open(settings.MEDIA_ROOT + "color_codes_India_27-Mar-2020_23:42.csv")
+	f = open(settings.MEDIA_ROOT + "color_codes_India_28-Mar-2020_15:06.csv")
 
 	for line in f.readlines():
 		lst = line.split(',')
