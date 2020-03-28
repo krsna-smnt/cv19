@@ -10,7 +10,7 @@ from datetime import datetime
 import string
 import sys
 import signal
-import time 
+import time
 
 import csv
 from heat_color_reference import normalize0_1, rgb_vals
@@ -65,8 +65,8 @@ def unpack_info(info):
 		else:
 			raw[i] = int(raw[i])
 
-	#Format:
-	#[country_name (type: string), total_cases (type: int), *new_cases (type: int), total_dead (type: int), new_dead (type: int), total_recovered (type: int), active_cases (type: int), critical_cases (type: int), cases_per_million (type: int), deaths_per_million (type: int)]
+#Format:
+#[country_name (type: string), total_cases (type: int), *new_cases (type: int), total_dead (type: int), new_dead (type: int), total_recovered (type: int), active_cases (type: int), critical_cases (type: int), cases_per_million (type: int), deaths_per_million (type: int)]
 
 	return raw
 
@@ -87,10 +87,10 @@ def retrieve():
 	table_rows_even = table_div.find_elements_by_class_name("even")
 
 	table_rows_odd += table_rows_even
-	items = table_rows_odd 
+	items = table_rows_odd
 
 	items_set = list(set(items))
-	
+
 	print("%d administrative entities found\n" % len(items_set))
 
 	datetime_obj = datetime.now()

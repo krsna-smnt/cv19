@@ -7,4 +7,5 @@ urlpatterns = [
     path('saveCountries/', views.saveCountries, name='saveCountries'),
     path('saveSubregions/', views.saveSubregions, name='saveSubregions'),
     path('saveCountryCodes/', views.saveCountryCodes, name='saveCountryCodes'),
+    path('saveCountryStats/', views.saveCountryStats, name='saveCountryStats'),
 ]

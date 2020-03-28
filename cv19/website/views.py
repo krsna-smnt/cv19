@@ -58,3 +58,8 @@ def saveCountryCodes(request):
 			print(country, country.code)
 		except:
 			print("Not Found")
+
+
+#name,total_cases,new_cases,total_dead,new_dead,total_cured,active_cases,critical_cases,cases_per_mil,deaths_per_mil,date
+def saveCountryStats(request):
+	f = open(settings.MEDIA_ROOT + "datasets_World_27-Mar-2020_23:41.csv")
