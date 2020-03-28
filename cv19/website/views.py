@@ -62,4 +62,52 @@ def saveCountryCodes(request):
 
 #name,total_cases,new_cases,total_dead,new_dead,total_cured,active_cases,critical_cases,cases_per_mil,deaths_per_mil,date
 def saveCountryStats(request):
-	f = open(settings.MEDIA_ROOT + "datasets_World_27-Mar-2020_23:41.csv")
+	f = open(settings.MEDIA_ROOT + "datasets_World_28-Mar-2020_15:11.csv")
+	lst = f.readlines()
+
+	countries = Country.objects.all()
+	for line in lst:
+		vals = line.split(',')
+
+		try:
+			country = countries.get(name=vals[0].strip())
+			country.total_cases = vals[1].strip()
+			country.new_infected = vals[2].strip()
+			country.infected = vals[6].strip()
+			country.new_dead = vals[4].strip()
+			country.dead = vals[3].strip()
+			country.cured = vals[5].strip()
+			country.critical = vals[7].strip()
+			country.cases_per_million = vals[8].strip()
+			country.dead_per_million = vals[9].strip()
+			country.first_case_date = vals[10].strip()
+			country.save()
+
+			print(country.name)
+		except Exception as e:
+			print(e)
+			print(vals[0].strip() + " not done")
+
+	return HttpResponse("Stats Saved")
+
+
+def saveSubregionStats(request):
+	f = open(settings.MEDIA_ROOT + "datasets_India_28-Mar-2020_15:06.csv")
+	lst = f.readlines()
+
+	subregions = Subregion.objects.all()
+	for line in lst:
+		vals = line.split(',')
+
+		try:
+			subregion = subregions.get(name=vals[0].strip())
+			subregion.total_cases = vals[1].strip()
+			subregion.dead = vals[2].strip()
+			subregion.save()
+
+			print(subregion.name)
+		except Exception as e:
+			print(e)
+			print(vals[0].strip() + " not done")
+
+	return HttpResponse("Stats Saved")

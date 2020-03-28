@@ -13,9 +13,9 @@ class Country(models.Model):
 	dead = models.IntegerField(default=0)
 	cured = models.IntegerField(default=0)
 	critical = models.IntegerField(default=0)
-	cases_per_million = models.IntegerField(default=0)
-	dead_per_million = models.IntegerField(default=0)
-	first_case_date = models.DateField(null=True, blank=True)
+	cases_per_million = models.FloatField(default=0.0)
+	dead_per_million = models.FloatField(default=0.0)
+	first_case_date = models.CharField(max_length=50, null=True, blank=True)
 	dead_color = models.CharField(max_length=7, null=True, blank=True)
 	infected_color = models.CharField(max_length=7, null=True, blank=True)
 
@@ -31,7 +31,7 @@ class Subregion(models.Model):
 	infected = models.IntegerField(default=0)
 	dead = models.IntegerField(default=0)
 	cured = models.IntegerField(default=0)
-	first_case_date = models.DateField(null=True, blank=True)
+	first_case_date = models.CharField(max_length=50, null=True, blank=True)
 	dead_color = models.CharField(max_length=7, null=True, blank=True)
 	infected_color = models.CharField(max_length=7, null=True, blank=True)
 

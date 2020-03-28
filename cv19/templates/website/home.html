@@ -26,7 +26,8 @@
 	var lst = [];
 	{% for country in countries %}
 
-		lst.push({"id": "{{ country.code }}", "fill": am4core.color("{{ country.infected_color }}")});
+		var display = "<table class='table table-responsive table-bordered'><thead><tr><th>Country</th><th>Infected</th><th>Dead</th><th>Recovered</th></tr></thead><tbody><tr><td>{{ country.name }}</td><td>{{ country.total_cases }}</td><td>{{ country.dead }}</td><td>{{ country.cured }}</td></tr></tbody></table>"
+		lst.push({"id": "{{ country.code }}", "tooltipHTML": display, "fill": am4core.color("{{ country.infected_color }}")});
 
 	{% endfor %}
 
@@ -35,8 +36,9 @@
 	map.series.push(worldSeries);
 
 	var worldTemplate = worldSeries.mapPolygons.template;
-	worldTemplate.tooltipText = "{name}\n10 Dead\n99 Fucked";
+	// worldTemplate.tooltipText = "{name}\n10 Dead\n99 Fucked";
 	worldTemplate.fill = am4core.color("#bbbbbb");
+	worldTemplate.propertyFields.tooltipHTML = "tooltipHTML"
 	worldTemplate.propertyFields.fill = "fill";
 
 	var indiaTemplate = indiaSeries.mapPolygons.template;

@@ -66,13 +66,8 @@ def unpack_info(info):
 			raw[i] = int(raw[i])
 	raw[10] = raw[10].strip()
 
-<<<<<<< HEAD
-#Format:
-#[country_name (type: string), total_cases (type: int), *new_cases (type: int), total_dead (type: int), new_dead (type: int), total_recovered (type: int), active_cases (type: int), critical_cases (type: int), cases_per_million (type: int), deaths_per_million (type: int)]
-=======
 	#Format:
 	#[country_name (type: string), total_cases (type: int), *new_cases (type: int), total_dead (type: int), new_dead (type: int), total_recovered (type: int), active_cases (type: int), critical_cases (type: int), cases_per_million (type: int), deaths_per_million (type: int), first_case_date (type: string)]
->>>>>>> 31b4e7d2d7d3742dacb89f0cc6e6c3e7d3f88766
 
 	return raw
 
