@@ -103,8 +103,10 @@ def retrieve():
 
 	dir_path = os.path.dirname(os.path.realpath(__file__))
 	rel_path = "/cv19/media/"
+	rel2 = "/datasets/World/"
 
-	f = csv.writer(open("datasets_World_" + datetime_stamp + ".csv" , "w"))
+
+	f = csv.writer(open(dir_path+rel2+"datasets_World_" + datetime_stamp + ".csv" , "w"))
 	g = csv.writer(open(dir_path+rel_path+"color_codes_World_latest" + ".csv" , "w"))
 	h = csv.writer(open(dir_path+rel_path+"datasets_World_latest" + ".csv" , "w"))
 
