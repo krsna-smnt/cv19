@@ -1,10 +1,39 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block content %}
 
 <div class="container-fluid">
 
 	<div id="chartdiv" style="width: 800; height: 800px;"></div>
+
+	{% for country in countries %}
+		<div class="modal fade" id="infoModal{{country.code}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle{{country.code}}" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle{{country.code}}"><b>{{ country.name }}</b></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<ul>
+		        			<li><b>Total Cases:</b> {{ country.total_cases }}</li>
+		        			<li><b>Currently Infected:</b> {{ country.infected }}</li>
+		        			<li><b>Deaths:</b> {{ country.dead }}</li>
+		        			<li><b>Recovered:</b> {{ country.cured }}</li>
+		        			<li><b>Critical:</b> {{ country.critical }}</li>
+		        			<li><b>New Cases:</b> {{ country.new_infected }}</li>
+		        			<li><b>New Deaths:</b> {{ country.new_dead }}</li>
+		        			<li><b>Cases Per Million:</b> {{ country.cases_per_million }}</li>
+		        			<li><b>Deaths Per Million:</b> {{ country.dead_per_million }}</li>
+		        			<li><b>Date of First Case:</b> {{ country.first_case_date }}</li>
+        		</ul>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	{% endfor %}
 
 </div>
 
@@ -16,39 +45,47 @@
 	map.panBehavior = "rotateLongLat";
 	map.geodata = am4geodata_worldIndiaHigh;
 	map.projection = new am4maps.projections.Orthographic();
+	// map.background.fill = am4core.color("#aadaff");
+	// map.background.fillOpacity = 1;
 
 	var worldSeries = map.series.push(new am4maps.MapPolygonSeries());
 	worldSeries.useGeodata = true;
 
-	var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
-	indiaSeries.geodata = am4geodata_india2019High;
+	// var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
+	// indiaSeries.geodata = am4geodata_india2019High;
+	// indiaSeries.geodataSource.url = "{% static 'assets/IND_adm3.json' %}";
+	// indiaSeries.geodata = districts;
 
 	var lst = [];
 	{% for country in countries %}
 
-		var display = "<table class='table table-responsive table-bordered'><thead><tr><th>Country</th><th>Infected</th><th>Dead</th><th>Recovered</th></tr></thead><tbody><tr><td>{{ country.name }}</td><td>{{ country.total_cases }}</td><td>{{ country.dead }}</td><td>{{ country.cured }}</td></tr></tbody></table>"
+		var display = "<b>{{ country.name }}</b><ul style='padding: 0'><li>Total Cases: {{ country.total_cases }}</li><li>Deaths: {{ country.dead }}</li><li>Recovered: {{ country.cured }}</li></ul><a>Click to View More</a>";
 		lst.push({"id": "{{ country.code }}", "tooltipHTML": display, "fill": am4core.color("{{ country.infected_color }}")});
 
 	{% endfor %}
 
 	worldSeries.data = lst;
 
-	map.series.push(worldSeries);
-
 	var worldTemplate = worldSeries.mapPolygons.template;
-	// worldTemplate.tooltipText = "{name}\n10 Dead\n99 Fucked";
 	worldTemplate.fill = am4core.color("#bbbbbb");
 	worldTemplate.propertyFields.tooltipHTML = "tooltipHTML"
 	worldTemplate.propertyFields.fill = "fill";
 
-	var indiaTemplate = indiaSeries.mapPolygons.template;
-	indiaTemplate.tooltipText = "{name}";
+	worldTemplate.events.on("hit", function(ev) {
+
+		ev.target.series.chart.zoomToMapObject(ev.target);
+		console.log(ev.target.dataItem.dataContext.id);
+		$('#infoModal' + ev.target.dataItem.dataContext.id).modal();
+	});
+
+	// var indiaTemplate = indiaSeries.mapPolygons.template;
+	// indiaTemplate.tooltipText = "{NAME_1}";
 
 	var hs = worldTemplate.states.create("hover");
 	hs.properties.fill = am4core.color("#770000");
 
-	var ihs = indiaTemplate.states.create("hover");
-	ihs.properties.fill = am4core.color("#ff9933");
+	// var ihs = indiaTemplate.states.create("hover");
+	// ihs.properties.fill = am4core.color("#ff9933");
 
 
 </script>
