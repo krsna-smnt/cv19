@@ -130,6 +130,10 @@ def retrieve():
 		g.writerow(color_list)
 		print(ret)
 		#print(color_list)
+	print(max_infected)
+	print(min_infected)
+	print(max_dead)
+	print(min_dead)
 
 
 
