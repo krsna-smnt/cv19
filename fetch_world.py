@@ -54,7 +54,7 @@ def unpack_info(info):
 		raw.append(inf.text)
 
 	raw[0] = raw[0].strip()
-	for i in range(1,len(raw)):
+	for i in range(1,10): #len(raw) replaced with 10 to avoid first case attribute.
 		raw[i] = raw[i].strip()
 		raw[i] = raw[i].replace(",", "")
 		raw[i] = raw[i].replace("+", "")
@@ -64,9 +64,15 @@ def unpack_info(info):
 			raw[i] = float(raw[i])
 		else:
 			raw[i] = int(raw[i])
+	raw[10] = raw[10].strip()
 
+<<<<<<< HEAD
 #Format:
 #[country_name (type: string), total_cases (type: int), *new_cases (type: int), total_dead (type: int), new_dead (type: int), total_recovered (type: int), active_cases (type: int), critical_cases (type: int), cases_per_million (type: int), deaths_per_million (type: int)]
+=======
+	#Format:
+	#[country_name (type: string), total_cases (type: int), *new_cases (type: int), total_dead (type: int), new_dead (type: int), total_recovered (type: int), active_cases (type: int), critical_cases (type: int), cases_per_million (type: int), deaths_per_million (type: int), first_case_date (type: string)]
+>>>>>>> 31b4e7d2d7d3742dacb89f0cc6e6c3e7d3f88766
 
 	return raw
 
@@ -76,8 +82,8 @@ def retrieve():
 	max_infected_ppm = 0.00
 	max_dead_ppm = 0.00
 
-	min_infected_ppm = 999999.99
-	min_dead_ppm = 999999.99
+	min_infected_ppm = 999999999.99
+	min_dead_ppm = 999999999.99
 	if not init_driver():
 		print("Failed to initialize")
 		return
@@ -101,16 +107,16 @@ def retrieve():
 
 	for item in items_set:
 		ret = unpack_info(item)
-		max_infected_ppm = max(max_infected_ppm, ret[len(ret) - 2])
-		min_infected_ppm = min(min_infected_ppm, ret[len(ret) - 2])
+		max_infected_ppm = max(max_infected_ppm, ret[1])
+		min_infected_ppm = min(min_infected_ppm, ret[1])
 
-		max_dead_ppm = max(max_dead_ppm, ret[len(ret) - 1])
-		min_dead_ppm = min(min_dead_ppm, ret[len(ret) - 1])
+		max_dead_ppm = max(max_dead_ppm, ret[3])
+		min_dead_ppm = min(min_dead_ppm, ret[3])
 
 	for item in items_set:
 		ret = unpack_info(item)
-		infected_ppm_color = rgb_vals(normalize0_1(ret[len(ret) - 2], max_infected_ppm, min_infected_ppm))
-		dead_ppm_color = rgb_vals(normalize0_1(ret[len(ret) - 1], max_dead_ppm, min_dead_ppm))
+		infected_ppm_color = rgb_vals(normalize0_1(ret[1], max_infected_ppm, min_infected_ppm))
+		dead_ppm_color = rgb_vals(normalize0_1(ret[3], max_dead_ppm, min_dead_ppm))
 		color_list = [ret[0], infected_ppm_color, dead_ppm_color]
 		f.writerow(ret)
 		g.writerow(color_list)
