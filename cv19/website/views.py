@@ -11,7 +11,7 @@ def home(request):
 
 
 def saveCountries(request):
-	f = open(settings.MEDIA_ROOT + "color_codes_World_28-Mar-2020_16:40.csv")
+	f = open(settings.MEDIA_ROOT + "color_codes_World_28-Mar-2020_17:50.csv")
 
 	for line in f.readlines():
 		lst = line.split(',')
@@ -62,7 +62,7 @@ def saveCountryCodes(request):
 
 #name,total_cases,new_cases,total_dead,new_dead,total_cured,active_cases,critical_cases,cases_per_mil,deaths_per_mil,date
 def saveCountryStats(request):
-	f = open(settings.MEDIA_ROOT + "datasets_World_28-Mar-2020_16:40.csv")
+	f = open(settings.MEDIA_ROOT + "datasets_World_28-Mar-2020_17:50.csv")
 	lst = f.readlines()
 
 	countries = Country.objects.all()
