@@ -11,7 +11,7 @@ def home(request):
 
 
 def saveCountries(request):
-	f = open(settings.MEDIA_ROOT + "color_codes_World_28-Mar-2020_15:11.csv")
+	f = open(settings.MEDIA_ROOT + "color_codes_World_28-Mar-2020_16:23.csv")
 
 	for line in f.readlines():
 		lst = line.split(',')

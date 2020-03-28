@@ -24,7 +24,7 @@ def rgb_vals(data_point):
 
 
 #if __name__ == "__main__":
-#	print(rgb_vals(0.5))
+#	print(rgb_vals(0.6))
 
 
 
