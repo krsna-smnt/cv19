@@ -11,6 +11,7 @@ import string
 import sys
 import signal
 import time
+import os
 
 import csv
 from heat_color_reference import normalize0_1, rgb_vals
@@ -100,8 +101,14 @@ def retrieve():
 	datetime_obj = datetime.now()
 	datetime_stamp = datetime_obj.strftime("%d-%b-%Y_%H:%M")
 
-	f = csv.writer(open("datasets_World_" + datetime_stamp + ".csv" , "w"))
-	g = csv.writer(open("color_codes_World_" + datetime_stamp + ".csv" , "w"))
+	dir_path = os.path.dirname(os.path.realpath(__file__))
+	rel_path = "/cv19/media/"
+	rel2 = "/datasets/World/"
+
+
+	f = csv.writer(open(dir_path+rel2+"datasets_World_" + datetime_stamp + ".csv" , "w"))
+	g = csv.writer(open(dir_path+rel_path+"color_codes_World_latest" + ".csv" , "w"))
+	h = csv.writer(open(dir_path+rel_path+"datasets_World_latest" + ".csv" , "w"))
 
 	for item in items_set:
 		ret = unpack_info(item)
@@ -129,6 +136,7 @@ def retrieve():
 		color_list = [ret[0], infected_ppm_color, dead_ppm_color]
 		f.writerow(ret)
 		g.writerow(color_list)
+		h.writerow(ret)
 		#print(ret)
 		#print(color_list)
 		#print(ret[0], normalize0_1(ret[1], max_infected_ppm, min_infected_ppm), normalize0_1(ret[3], max_dead_ppm, min_dead_ppm))

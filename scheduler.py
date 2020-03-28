@@ -2,9 +2,13 @@ import schedule
 import time
 import os
 import sys
+import requests
 
-def update_date_files():
-	pass
+def update_data_files():
+    URL1 = "final_urlhere"
+    URL2 = "final_urlhere"
+    r = requests.get(url = URL)
+
 
 def run_india_fetch():
 	os.system("python3 fetch.py")

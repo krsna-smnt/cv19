@@ -14,6 +14,8 @@ import time
 
 import csv
 from heat_color_reference import normalize0_1, rgb_vals
+import os
+
 
 driver = None
 url = "https://covindia.com/"
@@ -109,9 +111,16 @@ def retrieve():
 	
 	datetime_obj = datetime.now()
 	datetime_stamp = datetime_obj.strftime("%d-%b-%Y_%H:%M")
+	
+	dir_path = os.path.dirname(os.path.realpath(__file__))
+	rel_path = "/cv19/media/"
+	rel2 = "/datasets/India/"
 
-	f = csv.writer(open("datasets_India_" + datetime_stamp + ".csv" , "w"))
-	g = csv.writer(open("color_codes_India_" + datetime_stamp + ".csv" , "w"))
+	f = csv.writer(open(dir_path+rel2+"datasets_India_" + datetime_stamp + ".csv" , "w"))
+	g = csv.writer(open(dir_path+rel_path+"color_codes_India_latest"+".csv" , "w"))
+	h = csv.writer(open(dir_path+rel_path+"datasets_India_latest" + ".csv" , "w"))
+	
+
 
 	for district in districts_set:
 		ret = unpack_info(district)
@@ -127,6 +136,7 @@ def retrieve():
 		dead_color = rgb_vals(normalize0_1(ret[2], max_dead, min_dead))
 		color_list = [ret[0], infected_color, dead_color]
 		f.writerow(ret)
+		h.writerow(ret)
 		g.writerow(color_list)
 		print(ret)
 		#print(color_list)
