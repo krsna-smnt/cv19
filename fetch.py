@@ -104,7 +104,7 @@ def retrieve():
 	districts = []
 
 	for item in items_set:
-		districts.append(item.text)
+		districts.append(item.get_attribute("data-original-title"))
 	districts_set = list(set(districts))
 	print("%d administrative entities found\n" % len(districts_set))
 
@@ -114,7 +114,7 @@ def retrieve():
 	
 	dir_path = os.path.dirname(os.path.realpath(__file__))
 	rel_path = "/cv19/media/"
-	rel2 = "/datasets/India/"
+	rel2 = "/cv19/datasets/India/"
 
 	f = csv.writer(open(dir_path+rel2+"datasets_India_" + datetime_stamp + ".csv" , "w"))
 	g = csv.writer(open(dir_path+rel_path+"color_codes_India_latest"+".csv" , "w"))
