@@ -113,7 +113,7 @@ def retrieve():
 	for item in items_set:
 		ret = unpack_info(item)
 		if ret[0] in 'World':
-			 continue
+			continue
 		max_infected_ppm = max(max_infected_ppm, ret[1])
 		min_infected_ppm = min(min_infected_ppm, ret[1])
 
@@ -130,7 +130,9 @@ def retrieve():
 	for item in items_set:
 		ret = unpack_info(item)
 		if ret[0] in 'World':
-			 continue
+			h.writerow(ret)
+			f.writerow(ret)
+			continue
 		infected_ppm_color = rgb_vals(normalize0_1(ret[1], max_infected_ppm, min_infected_ppm))
 		dead_ppm_color = rgb_vals(normalize0_1(ret[3], max_dead_ppm, min_dead_ppm))
 		color_list = [ret[0], infected_ppm_color, dead_ppm_color]
