@@ -8,10 +8,10 @@ def update_data_files():
     os.system("python3 upload_data.py")
 
 def run_india_fetch():
-	os.system("python3 fetch.py")
-    
+    os.system("python3 fetch.py")
+
 def run_world_fetch():
-	os.system("python3 fetch_world.py")
+    os.system("python3 fetch_world.py")
 
 def job():
     print("Performing Jobs")
