@@ -18,6 +18,7 @@ class Country(models.Model):
 	first_case_date = models.CharField(max_length=50, null=True, blank=True)
 	dead_color = models.CharField(max_length=7, null=True, blank=True)
 	infected_color = models.CharField(max_length=7, null=True, blank=True)
+	percentage_increase = models.FloatField(null=True, blank=True)
 
 	def __str__(self):
 		return self.name
@@ -34,6 +35,7 @@ class Subregion(models.Model):
 	first_case_date = models.CharField(max_length=50, null=True, blank=True)
 	dead_color = models.CharField(max_length=7, null=True, blank=True)
 	infected_color = models.CharField(max_length=7, null=True, blank=True)
+	percentage_increase = models.FloatField(null=True, blank=True)
 
 	def __str__(self):
 		return self.name

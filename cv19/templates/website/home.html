@@ -4,73 +4,83 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-lg-4">
+		<div class="col-lg-5">
 
-			<div class="card">
-			  <h1 class="card-header bg-secondary" style='text-align: center; font-weight: bolder;'>Worldwide Stats</h1>
+			<div class="card" style="border: none;">
 			  <div class="card-body">
-			  	<div class="container-fluid">
-			  	<div class="row">
-
-			  		<div class="col-lg-6">
-			  			<div class="card">
-			  				<div class="card-header" style='text-align: center;'>
-					  			<h2><b>Infected</b></h2>
-					  		</div>
-					  		<div class="card-body" style='text-align: center;'>
-					  			 <h4>{{ world.total_cases }}</h4>
-					  		</div>
-				  		</div>
-			  		</div>
-
-			  		<div class="col-lg-6">
-			  			<div class="card">
-			  				<div class="card-header" style='text-align: center;'>
-					  			<h2><b>Deaths</b></h2>
-					  		</div>
-					  		<div class="card-body" style='text-align: center;'>
-					  			 <h4>{{ world.dead }}</h4>
-					  		</div>
-				  		</div>
-			  		</div>
-
+			  <p><span style="color: #555555; font-size: 122px; font-weight: bolder;">{{ world.total_cases }}</span><span style="font-size: 30px; color: red;">&nbsp;+{{ percentage }}%&nbsp;<i class="fas fa-arrow-up" style="color: red;"></i></span></p>
+			  <p style="font-size: 27px; color: #777777">&nbsp;WORLDWIDE</p>
+			  <br>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;Deaths</h4>
 			  	</div>
-			  	<br>
-				</div>
-
-				<div class="container-fluid">
-			  	<div class="row">
-
-			  		<div class="col-lg-6">
-			  			<div class="card">
-			  				<div class="card-header" style='text-align: center;'>
-					  			<h2><b>Recovered</b></h2>
-					  		</div>
-					  		<div class="card-body" style='text-align: center;'>
-					  			 <h4>{{ world.cured }}</h4>
-					  		</div>
-				  		</div>
-			  		</div>
-
-			  		<div class="col-lg-6">
-			  			<div class="card">
-			  				<div class="card-header" style='text-align: center;'>
-					  			<h2><b>Critical</b></h2>
-					  		</div>
-					  		<div class="card-body" style='text-align: center;'>
-					  			 <h4>{{ world.critical }}</h4>
-					  		</div>
-				  		</div>
-			  		</div>
-
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ world.dead }}</h4>
 			  	</div>
-				</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;Recovered</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ world.cured }}</h4>
+			  	</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;Critical</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ world.critical }}</h4>
+			  	</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;New Infected</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ world.new_infected }}</h4>
+			  	</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;New Deaths</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ world.new_dead }}</h4>
+			  	</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;Cases Per Million</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ world.cases_per_million }}</h4>
+			  	</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;Deaths Per Million</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ world.dead_per_million }}</h4>
+			  	</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;First Case Date</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ world.first_case_date }}</h4>
+			  	</div>
+			  </div>
 			  </div>
 			</div>
 		</div>
-		<div class="col-lg-8">
+		<div class="col-lg-7">
 
-			<div id="chartdiv" style="width: 1200px; height: 800px;"></div>
+			<div id="chartdiv" style="width: 1100px; height: 800px;"></div>
 
 			{% for country in countries %}
 				<div class="modal fade" id="infoModal{{country.code}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle{{country.code}}" aria-hidden="true">
@@ -84,16 +94,16 @@
 				      </div>
 				      <div class="modal-body">
 				      	<ul>
-							<li><b>Total Cases:</b> {{ country.total_cases }}</li>
-							<li><b>Currently Infected:</b> {{ country.infected }}</li>
-							<li><b>Deaths:</b> {{ country.dead }}</li>
-							<li><b>Recovered:</b> {{ country.cured }}</li>
-							<li><b>Critical:</b> {{ country.critical }}</li>
-							<li><b>New Cases:</b> {{ country.new_infected }}</li>
-							<li><b>New Deaths:</b> {{ country.new_dead }}</li>
-							<li><b>Cases Per Million:</b> {{ country.cases_per_million }}</li>
-							<li><b>Deaths Per Million:</b> {{ country.dead_per_million }}</li>
-							<li><b>Date of First Case:</b> {{ country.first_case_date }}</li>
+							<h4><li><b>Total Cases:</b> {{ country.total_cases }}</li></h4>
+							<h4><li><b>Currently Infected:</b> {{ country.infected }}</li></h4>
+							<h4><li><b>Deaths:</b> {{ country.dead }}</li></h4>
+							<h4><li><b>Recovered:</b> {{ country.cured }}</li></h4>
+							<h4><li><b>Critical:</b> {{ country.critical }}</li></h4>
+							<h4><li><b>New Cases:</b> {{ country.new_infected }}</li></h4>
+							<h4><li><b>New Deaths:</b> {{ country.new_dead }}</li></h4>
+							<h4><li><b>Cases Per Million:</b> {{ country.cases_per_million }}</li></h4>
+							<h4><li><b>Deaths Per Million:</b> {{ country.dead_per_million }}</li></h4>
+							<h4><li><b>Date of First Case:</b> {{ country.first_case_date }}</li></h4>
 		        		</ul>
 				      </div>
 				    </div>
@@ -119,7 +129,7 @@
 
 	var worldSeries = map.series.push(new am4maps.MapPolygonSeries());
 	worldSeries.useGeodata = true;
-
+	worldSeries.tooltip.getFillFromObject = false;
 	// var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
 	// indiaSeries.geodata = am4geodata_india2019High;
 	// indiaSeries.geodataSource.url = "{% static 'assets/IND_adm3.json' %}";
@@ -128,7 +138,7 @@
 	var lst = [];
 	{% for country in countries %}
 
-		var display = "<b>{{ country.name }}</b><ul style='padding: 0'><li>Total Cases: {{ country.total_cases }}</li><li>Deaths: {{ country.dead }}</li><li>Recovered: {{ country.cured }}</li></ul><a>Click to View More</a>";
+		var display = "<span style='color:black;'><b style='font-size:20px;'>&nbsp;{{ country.name }}</b><ul style='padding: 0'><li><span style='font-size:30px;'>{{ country.total_cases }}</span> <span style='color:red;font-size:15px;'>+{{ country.percentage_increase }}%</span>&nbsp;<i class='fas fa-arrow-up' style='color:red'></i><br></li><p style='font-size:18px;'>&nbsp;Cases</p><li>&nbsp;Deaths: {{ country.dead }}</li><li>&nbsp;Recovered: {{ country.cured }}</li></ul><a>&nbsp;Click to View More</a></span>";
 		lst.push({"id": "{{ country.code }}", "tooltipHTML": display, "fill": am4core.color("{{ country.infected_color }}")});
 
 	{% endfor %}

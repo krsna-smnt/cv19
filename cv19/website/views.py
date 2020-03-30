@@ -8,7 +8,8 @@ from .models import *
 def home(request):
 	countries = Country.objects.all()
 	world = countries.get(name='World')
-	return render(request, 'website/home.html', {'countries': countries, 'world': world})
+	percentage = round(100 * world.new_infected / world.total_cases, 2)
+	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage})
 
 
 def saveCountries(file):
@@ -83,6 +84,7 @@ def saveCountryStats(file):
 			country.cases_per_million = vals[8].strip()
 			country.dead_per_million = vals[9].strip()
 			country.first_case_date = vals[10].strip()
+			country.percentage_increase = round(100 * country.new_infected / country.total_cases, 2)
 			country.save()
 
 		except Exception as e:
