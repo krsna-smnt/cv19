@@ -10,11 +10,10 @@ def home(request):
 	return render(request, 'website/home.html', {'countries': countries})
 
 
-def saveCountries(request):
-	f = open(settings.MEDIA_ROOT + "color_codes_World_latest.csv")
-
-	for line in f.readlines():
-		lst = line.split(',')
+def saveCountries(file):
+	file.open()
+	for line in file.readlines():
+		lst = line.decode("utf-8").split(',')
 
 		try:
 			country = Country.objects.get(name=lst[0])
@@ -24,14 +23,15 @@ def saveCountries(request):
 		country.name, country.infected_color, country.dead_color = lst[0], lst[1], lst[2]
 		country.save()
 
-	return HttpResponse("Countries Saved")
+	file.close()
+	# return HttpResponse("Countries Saved")
 
 
-def saveSubregions(request):
-	f = open(settings.MEDIA_ROOT + "color_codes_India_latest.csv")
+def saveSubregions(file):
+	file.open()
 
-	for line in f.readlines():
-		lst = line.split(',')
+	for line in file.readlines():
+		lst = line.decode("utf-8").split(',')
 
 		try:
 			subregion = Subregion.objects.get(name=lst[0])
@@ -42,7 +42,9 @@ def saveSubregions(request):
 		subregion.country = Country.objects.get(name='India')
 		subregion.save()
 
-	return HttpResponse("Subregions Saved")
+	file.close()
+
+	# return HttpResponse("Subregions Saved")
 
 
 def saveCountryCodes(request):
@@ -55,19 +57,18 @@ def saveCountryCodes(request):
 			country = countries.get(name=lst[i].strip())
 			country.code = lst[i+1]
 			country.save()
-			print(country, country.code)
 		except:
 			print("Not Found")
 
 
 #name,total_cases,new_cases,total_dead,new_dead,total_cured,active_cases,critical_cases,cases_per_mil,deaths_per_mil,date
-def saveCountryStats(request):
-	f = open(settings.MEDIA_ROOT + "datasets_World_latest.csv")
-	lst = f.readlines()
+def saveCountryStats(file):
+	file.open()
+	lst = file.readlines()
 
 	countries = Country.objects.all()
 	for line in lst:
-		vals = line.split(',')
+		vals = line.decode("utf-8").split(',')
 
 		try:
 			country = countries.get(name=vals[0].strip())
@@ -83,21 +84,20 @@ def saveCountryStats(request):
 			country.first_case_date = vals[10].strip()
 			country.save()
 
-			print(country.name)
 		except Exception as e:
 			print(e)
-			print(vals[0].strip() + " not done")
 
-	return HttpResponse("Stats Saved")
+	file.close()
+	# return HttpResponse("Stats Saved")
 
 
-def saveSubregionStats(request):
-	f = open(settings.MEDIA_ROOT + "datasets_India_latest.csv")
+def saveSubregionStats(file):
+	file.open()
 	lst = f.readlines()
 
 	subregions = Subregion.objects.all()
 	for line in lst:
-		vals = line.split(',')
+		vals = line.decode("utf-8").split(',')
 
 		try:
 			subregion = subregions.get(name=vals[0].strip())
@@ -105,9 +105,48 @@ def saveSubregionStats(request):
 			subregion.dead = vals[2].strip()
 			subregion.save()
 
-			print(subregion.name)
 		except Exception as e:
 			print(e)
-			print(vals[0].strip() + " not done")
 
-	return HttpResponse("Stats Saved")
+	file.close()
+	# return HttpResponse("Stats Saved")
+
+
+def uploadFiles(request):
+	if request.method == 'GET':
+		return render(request, 'website/uploadFiles.html', {})
+	elif request.method == 'POST':
+		statsIndia = request.FILES['statsIndia']
+		statsWorld = request.FILES['statsWorld']
+		colorWorld = request.FILES['colorWorld']
+		colorIndia = request.FILES['colorIndia']
+
+		afile = Afile()
+		afile.region = "world"
+		afile.content = "stats"
+		afile.file = statsWorld
+		afile.save()
+
+		saveCountryStats(afile.file)
+
+		afile = Afile()
+		afile.region = "world"
+		afile.content = "color"
+		afile.file = colorWorld
+		afile.save()
+
+		saveCountries(afile.file)
+
+		afile = Afile()
+		afile.region = "india"
+		afile.content = "stats"
+		afile.file = statsIndia
+		afile.save()
+
+		afile = Afile()
+		afile.region = "india"
+		afile.content = "color"
+		afile.file = colorIndia
+		afile.save()
+
+		return HttpResponse("Files Uploaded and Data Updated.")

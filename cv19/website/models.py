@@ -37,3 +37,12 @@ class Subregion(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+class Afile(models.Model):
+	region = models.CharField(max_length=10) # india or world
+	content = models.CharField(max_length=10) # colors or stats
+	file = models.FileField()
+
+	def __str__(self):
+		return self.region + " - " + self.content

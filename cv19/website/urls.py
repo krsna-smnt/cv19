@@ -9,4 +9,5 @@ urlpatterns = [
     path('saveCountryCodes/', views.saveCountryCodes, name='saveCountryCodes'),
     path('saveCountryStats/', views.saveCountryStats, name='saveCountryStats'),
     path('saveSubregionStats/', views.saveSubregionStats, name='saveSubregionStats'),
+    path('uploadFiles/', views.uploadFiles, name='uploadFiles'),
 ]
