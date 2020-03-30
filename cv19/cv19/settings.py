@@ -25,7 +25,7 @@ SECRET_KEY = ')iwr6&hk5(=0pcbn^_w+o76r)vqw#q_9fix48vitn3m)i=fw%)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['covid19tracker.pythonanywhere.com']
 
 
 # Application definition
