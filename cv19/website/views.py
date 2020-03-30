@@ -7,7 +7,8 @@ from .models import *
 
 def home(request):
 	countries = Country.objects.all()
-	return render(request, 'website/home.html', {'countries': countries})
+	world = countries.get(name='World')
+	return render(request, 'website/home.html', {'countries': countries, 'world': world})
 
 
 def saveCountries(file):
