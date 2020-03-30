@@ -5,13 +5,11 @@ import sys
 import requests
 
 def update_data_files():
-    URL1 = "final_urlhere"
-    URL2 = "final_urlhere"
-    r = requests.get(url = URL)
-
+    os.system("python3 upload_data.py")
 
 def run_india_fetch():
 	os.system("python3 fetch.py")
+    
 def run_world_fetch():
 	os.system("python3 fetch_world.py")
 
