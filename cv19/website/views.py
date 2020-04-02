@@ -83,7 +83,6 @@ def saveCountryStats(file):
 			country.critical = vals[7].strip()
 			country.cases_per_million = vals[8].strip()
 			country.dead_per_million = vals[9].strip()
-			country.first_case_date = vals[10].strip()
 			country.percentage_increase = round(100 * country.new_infected / country.total_cases, 2)
 			country.save()
 
