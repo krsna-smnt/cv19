@@ -72,23 +72,27 @@ def saveCountryStats(file):
 	for line in lst:
 		vals = line.decode("utf-8").split(',')
 
-		try:
-			country = countries.get(name=vals[0].strip())
-			country.total_cases = vals[1].strip()
-			country.new_infected = vals[2].strip()
-			country.infected = vals[6].strip()
-			country.new_dead = vals[4].strip()
-			country.dead = vals[3].strip()
-			country.cured = vals[5].strip()
-			country.critical = vals[7].strip()
-			country.cases_per_million = vals[8].strip()
-			country.dead_per_million = vals[9].strip()
-			country.first_case_date = vals[10].strip()
-			country.percentage_increase = round(100 * country.new_infected / country.total_cases, 2)
-			country.save()
+		country = countries.get(name=vals[0].strip())
+		country.total_cases = vals[1].strip()
+		country.new_infected = vals[2].strip()
+		country.infected = vals[6].strip()
+		country.new_dead = vals[4].strip()
+		country.dead = vals[3].strip()
+		country.cured = vals[5].strip()
+		country.critical = vals[7].strip()
+		country.cases_per_million = vals[8].strip()
+		country.dead_per_million = vals[9].strip()
+		country.first_case_date = vals[10].strip()
 
-		except Exception as e:
-			print(e)
+		try:
+			country.percentage_increase = round(100 * int(country.new_infected) / int(country.total_cases), 2)
+		except ZeroDivisionError:
+			country.percentage_increase = None
+
+		country.save()
+
+#		except Exception as e:
+#			print(e)
 
 	file.close()
 	# return HttpResponse("Stats Saved")
