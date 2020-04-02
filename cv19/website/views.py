@@ -72,7 +72,16 @@ def saveCountryStats(file):
 	for line in lst:
 		vals = line.decode("utf-8").split(',')
 
-		country = countries.get(name=vals[0].strip())
+		try:
+			country = countries.get(name=vals[0].strip())
+		except:
+			country = Country()
+
+		country.name = vals[0].strip()
+
+		oldn = country.total_cases
+		newn = vals[1].strip()
+
 		country.total_cases = vals[1].strip()
 		country.new_infected = vals[2].strip()
 		country.infected = vals[6].strip()
@@ -82,13 +91,12 @@ def saveCountryStats(file):
 		country.critical = vals[7].strip()
 		country.cases_per_million = vals[8].strip()
 		country.dead_per_million = vals[9].strip()
-		country.first_case_date = vals[10].strip()
 
 		try:
-			country.percentage_increase = round(100 * int(country.new_infected) / int(country.total_cases), 2)
+			if oldn != newn:
+				country.percentage_increase = round(100 * int(country.new_infected) / int(country.total_cases), 2)
 		except ZeroDivisionError:
 			country.percentage_increase = None
-
 		country.save()
 
 #		except Exception as e:
@@ -130,19 +138,19 @@ def uploadFiles(request):
 
 		afile = Afile()
 		afile.region = "world"
+		afile.content = "color"
+		afile.file = colorWorld
+		afile.save()
+		saveCountries(afile.file)
+
+
+		afile = Afile()
+		afile.region = "world"
 		afile.content = "stats"
 		afile.file = statsWorld
 		afile.save()
 
 		saveCountryStats(afile.file)
-
-		afile = Afile()
-		afile.region = "world"
-		afile.content = "color"
-		afile.file = colorWorld
-		afile.save()
-
-		saveCountries(afile.file)
 
 		afile = Afile()
 		afile.region = "india"
