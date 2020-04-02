@@ -106,7 +106,6 @@ def saveSubregionStats(file):
 			subregion.total_cases = vals[1].strip()
 			subregion.dead = vals[2].strip()
 			subregion.save()
-
 		except Exception as e:
 			print(e)
 
