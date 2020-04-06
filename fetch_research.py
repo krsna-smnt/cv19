@@ -125,58 +125,6 @@ def retrieve():
 			#csv dump
 			f.writerow(article)
 			g.writerow(article)
-			
-		
-
-
-
-
-
-	'''
-
-	for item in items_set:
-		districts.append(item.get_attribute("data-original-title"))
-	districts_set = list(set(districts))
-	print("%d administrative entities found\n" % len(districts_set))
-
-	
-	datetime_obj = datetime.now()
-	datetime_stamp = datetime_obj.strftime("%d-%b-%Y_%H:%M")
-	
-	dir_path = os.path.dirname(os.path.realpath(__file__))
-	rel_path = "/cv19/media/"
-	rel2 = "/cv19/datasets/India/"
-
-	f = csv.writer(open(dir_path+rel2+"datasets_India_" + datetime_stamp + ".csv" , "w"))
-	g = csv.writer(open(dir_path+rel_path+"color_codes_India_latest"+".csv" , "w"))
-	h = csv.writer(open(dir_path+rel_path+"datasets_India_latest" + ".csv" , "w"))
-	
-
-
-	for district in districts_set:
-		ret = unpack_info(district)
-		max_infected = max(max_infected, ret[1])
-		min_infected = min(min_infected, ret[1])
-
-		max_dead = max(max_dead, ret[2])
-		min_dead = min(min_dead, ret[2])
-
-	for district in districts_set:
-		ret = unpack_info(district)
-		infected_color = rgb_vals(normalize0_1(ret[1], max_infected, min_infected))
-		dead_color = rgb_vals(normalize0_1(ret[2], max_dead, min_dead))
-		color_list = [ret[0], infected_color, dead_color]
-		f.writerow(ret)
-		h.writerow(ret)
-		g.writerow(color_list)
-		print(ret)
-		#print(color_list)
-	print(max_infected)
-	print(min_infected)
-	print(max_dead)
-	print(min_dead)
-	'''
-
 
 if __name__ == "__main__":
 	retrieve()
