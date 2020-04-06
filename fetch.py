@@ -53,7 +53,7 @@ def init_driver():
 
 def unpack_info(info):
 	if info is None:
-		pass
+		return
 	district_name = ""
 	infected_str = ""
 	dead_str = ""

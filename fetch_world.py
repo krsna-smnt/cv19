@@ -66,7 +66,8 @@ def unpack_info(info):
 			raw[i] = float(raw[i])
 		else:
 			raw[i] = int(raw[i])
-	raw[10] = raw[10].strip()
+	#if raw[10]:
+	#	raw[10] = raw[10].strip()
 
 
 
