@@ -25,6 +25,11 @@ def covidResearch(request):
 
 				row.append(thing)
 
+		if "medrxiv" in row[2]:
+			row.append("medrxiv")
+		elif "biorxiv" in row[2]:
+			row.append("biorxiv")
+
 		papers.append(row)
 
 	return render(request, 'website/covidResearch.html', {'papers': papers})
