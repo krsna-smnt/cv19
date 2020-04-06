@@ -15,6 +15,7 @@ def run_world_fetch():
 
 def run_research_fetch():
     os.system("python3 fetch_research.py")
+    os.system("python3 fetch_arxiv.py")
 
 def job():
     print("Performing Jobs")
@@ -37,7 +38,7 @@ def job2():
     try:
     	run_research_fetch()
     except:
-    	print("Couldn't run fetch_research.py")
+    	print("Couldn't run fetch_research.py or fetch_arxiv.py")
 
 
 #schedule.every(0.1).minutes.do(job)
