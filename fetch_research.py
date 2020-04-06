@@ -75,9 +75,19 @@ def retrieve():
 		driver.get(base_url+str(i))
 		for j in range(10):
 			base_path = "/html/body/div[2]/section/div/div/div[1]/div["+str(j+1)+"]"
-			article_title = driver.find_element_by_xpath(base_path+"/div/div[1]/span/a").text
-			authors = driver.find_element_by_xpath(base_path+"/div/div[2]/span").text
-			article_link = driver.find_element_by_xpath(base_path+"/div/div[3]/span/span[1]/a").get_attribute('href')
+			try:
+				article_title = driver.find_element_by_xpath(base_path+"/div/div[1]/span/a").text
+			except:
+				article_title = None
+			try:
+				authors = driver.find_element_by_xpath(base_path+"/div/div[2]/span").text
+			except:
+				authors = None
+			try:
+				article_link = driver.find_element_by_xpath(base_path+"/div/div[3]/span/span[1]/a").get_attribute('href')
+			except:
+				article_link = None
+
 			article = [article_title, authors, article_link]
 			#csv dump
 			f.writerow(article)
