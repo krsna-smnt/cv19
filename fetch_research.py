@@ -48,49 +48,6 @@ def init_driver():
 	except:
 		return False
 
-'''
-
-def unpack_info(info):
-	if info is None:
-		return
-	district_name = ""
-	infected_str = ""
-	dead_str = ""
-
-	inter = info.split('|')
-	
-	district_name = inter[0].strip()
-
-	if len(inter) > 1:
-		inter[1] = inter[1].replace("Infected:", "")
-		inter[2] = inter[2].replace("Deaths:", "")
-		infected_str = inter[1].strip()
-		dead_str = inter[2].strip()
-
-	else:
-		infected_str = dead_str = "0"
-
-	#Final touches
-	dead_n_str = ""
-	for c in dead_str:
-		if c in "1234567890":
-			dead_n_str += c
-		else:
-			break
-	dead_str = dead_str.replace(dead_n_str, "")
-	dead_str.strip()
-	dead_n_str.strip()
-
-	#Format:
-	# [district-name (type: string), infected (type: int), dead (type: int), district_details (type: string)]
-	ret = [district_name, int(infected_str), int(dead_n_str), dead_str]
-
-	return ret
-
-
-'''
-
-
 
 def retrieve():
 	if not init_driver():
