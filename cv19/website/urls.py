@@ -10,4 +10,5 @@ urlpatterns = [
     path('saveCountryStats/', views.saveCountryStats, name='saveCountryStats'),
     path('saveSubregionStats/', views.saveSubregionStats, name='saveSubregionStats'),
     path('uploadFiles/', views.uploadFiles, name='uploadFiles'),
+    path('covidResearch/', views.covidResearch, name='covidResearch'),
 ]

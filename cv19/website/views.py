@@ -12,6 +12,24 @@ def home(request):
 	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage})
 
 
+def covidResearch(request):
+	f = open(settings.MEDIA_ROOT + "pubs_latest.csv")
+	lst = f.readlines()
+
+	papers = []
+	for item in lst:
+		row = []
+		for thing in item.split("\""):
+			if len(thing) > 3:
+				thing = thing.lstrip(',').rstrip(',')
+
+				row.append(thing)
+
+		papers.append(row)
+
+	return render(request, 'website/covidResearch.html', {'papers': papers})
+
+
 def saveCountries(file):
 	file.open()
 	for line in file.readlines():
@@ -26,7 +44,6 @@ def saveCountries(file):
 		country.save()
 
 	file.close()
-	# return HttpResponse("Countries Saved")
 
 
 def saveSubregions(file):
@@ -45,8 +62,6 @@ def saveSubregions(file):
 		subregion.save()
 
 	file.close()
-
-	# return HttpResponse("Subregions Saved")
 
 
 def saveCountryCodes(request):
@@ -99,11 +114,7 @@ def saveCountryStats(file):
 			country.percentage_increase = None
 		country.save()
 
-#		except Exception as e:
-#			print(e)
-
 	file.close()
-	# return HttpResponse("Stats Saved")
 
 
 def saveSubregionStats(file):
@@ -119,12 +130,10 @@ def saveSubregionStats(file):
 			subregion.total_cases = vals[1].strip()
 			subregion.dead = vals[2].strip()
 			subregion.save()
-
 		except Exception as e:
 			print(e)
 
 	file.close()
-	# return HttpResponse("Stats Saved")
 
 
 def uploadFiles(request):

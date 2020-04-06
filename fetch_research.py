@@ -10,7 +10,7 @@ from datetime import datetime
 import string
 import sys
 import signal
-import time 
+import time
 
 import csv
 #from heat_color_reference import normalize0_1, rgb_vals
@@ -18,7 +18,7 @@ import os
 
 
 driver = None
-url = "https://connect.biorxiv.org/relate/content/181?page=1" 
+url = "https://connect.biorxiv.org/relate/content/181?page=1"
 #url_arxiv = "https://arxiv.org/search/advanced?advanced=&terms-0-operator=AND&terms-0-term=COVID-19&terms-0-field=title&terms-1-operator=OR&terms-1-term=SARS-CoV-2&terms-1-field=abstract&terms-3-operator=OR&terms-3-term=COVID-19&terms-3-field=abstract&terms-4-operator=OR&terms-4-term=SARS-CoV-2&terms-4-field=title&terms-5-operator=OR&terms-5-term=coronavirus&terms-5-field=title&terms-6-operator=OR&terms-6-term=coronavirus&terms-6-field=abstract&classification-physics_archives=all&classification-include_cross_list=include&date-filter_by=all_dates&date-year=&date-from_date=&date-to_date=&date-date_type=submitted_date&abstracts=show&size=200&order=-announced_date_first&source=home-covid-19"
 
 def stop_handler(sig, frame):
@@ -69,7 +69,7 @@ def retrieve():
 
 	f = csv.writer(open(dir_path+rel2+"pubs_" + datetime_stamp + ".csv" , "w"))
 	g = csv.writer(open(dir_path+rel_path+"pubs_latest"+".csv" , "w"))
-			
+
 
 	for i in range(1, total_pages+1):
 		driver.get(base_url+str(i))
