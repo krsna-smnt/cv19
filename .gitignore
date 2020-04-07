@@ -3,3 +3,4 @@
 *.log
 *.sqlite3
 *.json
+cv19/cv19/settings.py

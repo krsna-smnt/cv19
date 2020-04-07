@@ -28,25 +28,18 @@
 <script type="text/javascript">
 	$(document).ready( function () {
 	    $('#researchTable').DataTable({
-	        "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
-	        dom:
-			     "<'row'"+
-			        "<'col-sm-3'l>"+
-			        "<'text-right col-sm-3'B>"+
-			        "<'text-right col-sm-6'f>"+
-			     ">"+
-			     "<'row dt-table'"+
-			        "<'col-sm-12'tr>"+
-			     ">"+
-			     "<'row'"+
-			        "<'col-sm-5'i>"+
-			        "<'text-right col-sm-7'p>"+
-			     ">",
-	        buttons: [
-	            {
-	                extend: 'print'
-	            }
-	        ]
+	        "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+	        dom:        "<'row'"+
+                                "<'col-sm-4'p>"+
+                                "<'text-right col-sm-8'f>"+
+                             ">"+
+                             "<'row dt-table'"+
+                                "<'col-sm-12'tr>"+
+                             ">"+
+                             "<'row'"+
+                                "<'col-sm-5'i>"+
+                                "<'text-right col-sm-7'p>"+
+                             ">",
 	    });
 	});
 </script>
