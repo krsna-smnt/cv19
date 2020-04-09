@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
 {% block content %}
 
 <div class="container-fluid">
@@ -8,9 +7,8 @@
 
 			<div class="card" style="border: none;">
 			  <div class="card-body">
-			  <p><span style="color: #555555; font-size: 122px; font-weight: bolder;">{{ world.total_cases }}</span><span style="font-size: 30px; color: red;">&nbsp;+{{ percentage }}%&nbsp;<i class="fas fa-arrow-up" style="color: red;"></i></span></p>
+			  <p><span style="color: #555555; font-size: 100px; font-weight: bolder;">{{ world.total_cases }}</span><span style="font-size: 30px; color: red;">&nbsp;+{{ percentage }}%&nbsp;<i class="fas fa-arrow-up" style="color: red;"></i></span></p>
 			  <p style="font-size: 27px; color: #777777">&nbsp;WORLDWIDE</p>
-			  <br>
 			  <div class="row" style="margin-bottom: 6px;">
 			  	<div class="col-sm-5">
 			  		<h4>&nbsp;Deaths</h4>
@@ -79,8 +77,7 @@
 			</div>
 		</div>
 		<div class="col-lg-7">
-
-			<div id="chartdiv" style="width: 1100px; height: 800px;"></div>
+			<div id="chartdiv" style="width: 850px; height: 550px;"></div>
 
 			{% for country in countries %}
 				<div class="modal fade" id="infoModal{{country.code}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle{{country.code}}" aria-hidden="true">
@@ -132,8 +129,6 @@
 	worldSeries.tooltip.getFillFromObject = false;
 	// var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
 	// indiaSeries.geodata = am4geodata_india2019High;
-	// indiaSeries.geodataSource.url = "{% static 'assets/Layers_INDST1_Polygon.json' %}";
-	// indiaSeries.geodataSource.url = "{% static 'assets/IND_adm3.json' %}";
 	// indiaSeries.geodata = districts;
 
 	var lst = [];

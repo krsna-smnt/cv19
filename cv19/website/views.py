@@ -13,26 +13,52 @@ def home(request):
 
 
 def covidResearch(request):
-	f = open(settings.MEDIA_ROOT + "pubs_latest.csv")
-	lst = f.readlines()
+	sources = ['medrxiv', 'biorxiv']
+	if request.method == 'POST':
+		source = request.POST['sources']
+		sources = source.split('#')
 
 	papers = []
-	for item in lst:
-		row = []
-		for thing in item.split("\""):
-			if len(thing) > 3:
-				thing = thing.lstrip(',').rstrip(',')
+	if 'arxiv' not in sources:
+		f = open(settings.MEDIA_ROOT + "pubs_latest.csv")
+		lst = f.readlines()
 
-				row.append(thing)
+		for item in lst:
+			row = []
+			for thing in item.split("\""):
+				if len(thing) > 3:
+					thing = thing.lstrip(',').rstrip(',')
+					row.append(thing)
 
-		if "medrxiv" in row[2]:
-			row.append("medrxiv")
-		elif "biorxiv" in row[2]:
-			row.append("biorxiv")
+			if "medrxiv" in row[2] and "medrxiv" in sources:
+				row.append("medrxiv")
+				papers.append(row)
+			elif "biorxiv" in row[2] and "biorxiv" in sources:
+				row.append("biorxiv")
+				papers.append(row)
+	else:
+		f = open(settings.MEDIA_ROOT + "pubs_arxiv_latest.csv")
+		lst = f.readlines()
 
-		papers.append(row)
+		for item in lst:
+			row = []
+			for thing in item.split("\""):
+				if len(thing) > 3:
+					thing = thing.lstrip(',').rstrip(',')
+					if "http" in thing:
+						things = thing.split(',')
+						for th in things:
+							row.append(th)
+					else:
+						row.append(thing)
 
-	return render(request, 'website/covidResearch.html', {'papers': papers})
+			row.insert(3, "arxiv")
+			papers.append(row)
+
+	selled = ""
+	for item in sources:
+		selled += item
+	return render(request, 'website/covidResearch.html', {'papers': papers, 'selled': selled})
 
 
 def saveCountries(file):
