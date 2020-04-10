@@ -20,7 +20,7 @@ def covidResearch(request):
 
 	papers = []
 	if 'arxiv' not in sources:
-		f = open(settings.MEDIA_ROOT + "pubs_latest.csv")
+		f = open(settings.MEDIA_ROOT + "pubs_latest.csv", encoding='utf-8')
 		lst = f.readlines()
 
 		for item in lst:
@@ -37,7 +37,7 @@ def covidResearch(request):
 				row.append("biorxiv")
 				papers.append(row)
 	else:
-		f = open(settings.MEDIA_ROOT + "pubs_arxiv_latest.csv")
+		f = open(settings.MEDIA_ROOT + "pubs_arxiv_latest.csv", encoding='utf-8')
 		lst = f.readlines()
 
 		for item in lst:
