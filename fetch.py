@@ -10,7 +10,7 @@ from datetime import datetime
 import string
 import sys
 import signal
-import time 
+import time
 
 import csv
 from heat_color_reference import normalize0_1, rgb_vals
@@ -36,18 +36,18 @@ signal.signal(signal.SIGTSTP, pause_handler)
 
 
 def init_driver():
-	try:
-		global driver
+#	try:
+	global driver
 
-		options = Options()
-		options.headless = True
+	options = Options()
+	options.headless = True
 
-		driver = webdriver.Firefox(options=options)
-		driver.get(url)
+	driver = webdriver.Firefox(options=options)
+	driver.get(url)
 
-		return True
-	except:
-		return False
+	return True
+#	except:
+#		return False
 
 
 

@@ -189,7 +189,7 @@ def saveCountryStats(file):
 
 def saveSubregionStats(file):
 	file.open()
-	lst = f.readlines()
+	lst = file.readlines()
 
 	subregions = Subregion.objects.all()
 	for line in lst:
@@ -197,11 +197,13 @@ def saveSubregionStats(file):
 
 		try:
 			subregion = subregions.get(name=vals[0].strip())
-			subregion.total_cases = vals[1].strip()
-			subregion.dead = vals[2].strip()
-			subregion.save()
-		except Exception as e:
-			print(e)
+		except:
+			subregion = Subregion()
+
+		subregion.name = vals[0].strip()
+		subregion.total_cases = vals[1].strip()
+		subregion.dead = vals[2].strip()
+		subregion.save()
 
 	file.close()
 
@@ -233,14 +235,18 @@ def uploadFiles(request):
 
 		afile = Afile()
 		afile.region = "india"
+		afile.content = "color"
+		afile.file = colorIndia
+		afile.save()
+
+		saveSubregions(afile.file)
+
+		afile = Afile()
+		afile.region = "india"
 		afile.content = "stats"
 		afile.file = statsIndia
 		afile.save()
 
-		afile = Afile()
-		afile.region = "india"
-		afile.content = "color"
-		afile.file = colorIndia
-		afile.save()
+		saveSubregionStats(afile.file)
 
 		return HttpResponse("Files Uploaded and Data Updated.")
