@@ -84,7 +84,7 @@ def unpack_info(info):
 
 	#Format:
 	# [district-name (type: string), infected (type: int), dead (type: int), district_details (type: string)]
-	ret = [district_name, int(infected_str), int(dead_n_str), dead_str]
+	ret = [str(district_name), int(infected_str), int(dead_n_str), str(dead_str)]
 
 	return ret
 
@@ -126,6 +126,8 @@ def retrieve():
 
 	for district in districts_set:
 		ret = unpack_info(district)
+		if ret is None:
+			continue
 		max_infected = max(max_infected, ret[1])
 		min_infected = min(min_infected, ret[1])
 
@@ -134,6 +136,8 @@ def retrieve():
 
 	for district in districts_set:
 		ret = unpack_info(district)
+		if ret is None:
+			continue
 		infected_color = rgb_vals(normalize0_1(ret[1], max_infected, min_infected))
 		dead_color = rgb_vals(normalize0_1(ret[2], max_dead, min_dead))
 		color_list = [ret[0], infected_color, dead_color]
