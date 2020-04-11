@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-4">
+
+			<div class="card" style="border: none;">
+			  <div class="card-body">
+			  <p><span style="color: #555555; font-size: 100px; font-weight: bolder;">{{ india.total_cases }}</span><span style="font-size: 30px; color: red;">&nbsp;+{{ india.percentage_increase }}%&nbsp;<i class="fas fa-arrow-up" style="color: red;"></i></span></p>
+			  <p style="font-size: 27px; color: #777777">&nbsp;INDIA</p>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;Deaths</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ india.dead }}</h4>
+			  	</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;Recovered</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ india.cured }}</h4>
+			  	</div>
+			  </div>
+			  <div class="row" style="margin-bottom: 6px;">
+			  	<div class="col-sm-5">
+			  		<h4>&nbsp;First Case Date</h4>
+			  	</div>
+			  	<div class="col-sm-5">
+			  		<h4 style='color:#888888;'>&nbsp;{{ india.first_case_date }}</h4>
+			  	</div>
+			  </div>
+			  </div>
+			</div>
+		</div>
+		<div class="col-lg-8">
+			<div id="chartdiv" style="width: 1200px; height: 800px;"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+	var map = am4core.create("chartdiv", am4maps.MapChart);
+	map.zoomControl = new am4maps.ZoomControl();
+	map.zoomControl.slider.height = 200;
+	// map.panBehavior = "rotateLongLat";
+	map.geodata = am4geodata_india2019High;
+	map.projection = new am4maps.projections.Miller();
+	map.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#0077be");
+	map.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 0.1;
+
+	var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
+	indiaSeries.useGeodata = true;
+	indiaSeries.tooltip.getFillFromObject = false;
+	
+	var distSeries = map.series.push(new am4maps.MapPolygonSeries());
+	distSeries.geodataSource.url = "{% static 'assets/india_dist.json' %}";;
+
+	var lst = [];
+	{% for subregion in subregions %}
+
+		var display = "<span style='color:black;'><b style='font-size:20px;'>&nbsp;{{ subregion.name }}</b><ul style='padding: 0'><li><span style='font-size:30px;'>{{ subregion.total_cases }}</span><br></li><p style='font-size:18px;'>&nbsp;Cases</p><li>&nbsp;Deaths: {{ subregion.dead }}</li><li>&nbsp;Recovered: {{ subregion.cured }}</li></ul></span>";
+		lst.push({"id": "{{ subregion.code }}", "tooltipHTML": display, "fill": am4core.color("{{ subregion.infected_color }}")});
+
+	{% endfor %}
+
+	distSeries.data = lst
+
+	var indiaTemplate = indiaSeries.mapPolygons.template;
+	indiaTemplate.fill = am4core.color("#bbbbbb");
+	indiaTemplate.tooltipText = "{ name }"
+
+	var distTemplate = distSeries.mapPolygons.template;
+	distTemplate.propertyFields.tooltipHTML = "tooltipHTML"
+	distTemplate.propertyFields.fill = "fill";
+
+	var hs = indiaTemplate.states.create("hover");
+	hs.properties.fill = am4core.color("#770000");
+
+	var ihs = distTemplate.states.create("hover");
+	ihs.properties.fill = am4core.color("#ffffff");
+
+</script>
+
+{% endblock %}

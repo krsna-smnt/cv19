@@ -127,9 +127,6 @@
 	var worldSeries = map.series.push(new am4maps.MapPolygonSeries());
 	worldSeries.useGeodata = true;
 	worldSeries.tooltip.getFillFromObject = false;
-	// var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
-	// indiaSeries.geodata = am4geodata_india2019High;
-	// indiaSeries.geodata = districts;
 
 	var lst = [];
 	{% for country in countries %}
@@ -148,18 +145,11 @@
 
 	worldTemplate.events.on("hit", function(ev) {
 
-		// ev.target.series.chart.zoomToMapObject(ev.target);
 		$('#infoModal' + ev.target.dataItem.dataContext.id).modal();
 	});
 
-	// var indiaTemplate = indiaSeries.mapPolygons.template;
-	// indiaTemplate.tooltipText = "{NAME_1}";
-
 	var hs = worldTemplate.states.create("hover");
 	hs.properties.fill = am4core.color("#770000");
-
-	// var ihs = indiaTemplate.states.create("hover");
-	// ihs.properties.fill = am4core.color("#ff9933");
 
 
 </script>

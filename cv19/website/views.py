@@ -5,15 +5,54 @@ from .models import *
 
 # Create your views here.
 
+def dochange(request):
+	subregions = Subregion.objects.all()
+
+	f = open(settings.MEDIA_ROOT + "dist_codes.txt")
+	lst = f.readlines()
+	for l in lst:
+		wi = l.split(' ')
+		w = [th.rstrip('\n') for th in wi]
+
+		c = w[0]
+		sb = ""
+		for i in w:
+			if i == w[0]:
+				continue
+
+			sb += i
+			if i != w[-1]:
+				sb += " "
+
+		try:
+			subregion = subregions.get(name=sb)
+			subregion.code = c
+			subregion.save()
+		except:
+			print(c, sb)
+
+
 def home(request):
 	countries = Country.objects.all()
 	world = countries.get(name='World')
 	percentage = round(100 * world.new_infected / world.total_cases, 2)
+	
 	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage})
 
 
-def covidResearch(request):
-	sources = ['medrxiv', 'biorxiv']
+def india(request):
+	subregions = Subregion.objects.all()
+	india = Country.objects.get(name='India')
+
+	return render(request, 'website/india.html', {'subregions': subregions, 'india': india})
+
+
+def datasets(request):
+	return render(request, 'website/datasets.html', {})
+
+
+def research(request):
+	sources = ['arxiv']
 	if request.method == 'POST':
 		source = request.POST['sources']
 		sources = source.split('#')
@@ -58,7 +97,7 @@ def covidResearch(request):
 	selled = ""
 	for item in sources:
 		selled += item
-	return render(request, 'website/covidResearch.html', {'papers': papers, 'selled': selled})
+	return render(request, 'website/research.html', {'papers': papers, 'selled': selled})
 
 
 def saveCountries(file):

@@ -26,6 +26,7 @@ class Country(models.Model):
 
 class Subregion(models.Model):
 	country = models.ForeignKey(Country, on_delete=models.CASCADE)
+	code = models.CharField(max_length=10, null=True, blank=True)
 	name = models.CharField(max_length=200)
 	population = models.IntegerField(default=0)
 	total_cases = models.IntegerField(default=0)
