@@ -5,46 +5,53 @@ from .models import *
 
 # Create your views here.
 
-def dochange(request):
-	subregions = Subregion.objects.all()
+# def dochange(request):
+# 	subregions = Subregion.objects.all()
 
-	f = open(settings.MEDIA_ROOT + "dist_codes.txt")
-	lst = f.readlines()
-	for l in lst:
-		wi = l.split(' ')
-		w = [th.rstrip('\n') for th in wi]
+# 	f = open(settings.MEDIA_ROOT + "dist_codes.txt")
+# 	lst = f.readlines()
+# 	for l in lst:
+# 		wi = l.split(' ')
+# 		w = [th.rstrip('\n') for th in wi]
 
-		c = w[0]
-		sb = ""
-		for i in w:
-			if i == w[0]:
-				continue
+# 		c = w[-1]
+# 		sb = ""
+# 		for i in w:
+# 			if i == w[-1]:
+# 				continue
 
-			sb += i
-			if i != w[-1]:
-				sb += " "
+# 			sb += i
+# 			if i != w[-2]:
+# 				sb += " "
 
-		try:
-			subregion = subregions.get(name=sb)
-			subregion.code = c
-			subregion.save()
-		except:
-			print(c, sb)
+# 		try:
+# 			subregion = subregions.get(name=sb)
+# 			subregion.code = c
+# 			subregion.save()
+# 		except:
+# 			print(c, sb)
 
 
 def home(request):
 	countries = Country.objects.all()
 	world = countries.get(name='World')
 	percentage = round(100 * world.new_infected / world.total_cases, 2)
+
+	max_cases = countries.exclude(name='World').order_by('-total_cases')[0].total_cases
+	min_cases = countries.exclude(name='World').order_by('total_cases')[0].total_cases
 	
-	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage})
+	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage, 'max_cases': max_cases, 'min_cases': min_cases})
 
 
 def india(request):
+	countries = Country.objects.all()
 	subregions = Subregion.objects.all()
 	india = Country.objects.get(name='India')
 
-	return render(request, 'website/india.html', {'subregions': subregions, 'india': india})
+	max_cases = subregions.order_by('-total_cases')[0].total_cases
+	min_cases = subregions.order_by('total_cases')[0].total_cases
+
+	return render(request, 'website/india.html', {'subregions': subregions, 'india': india, 'max_cases': max_cases, 'min_cases': min_cases})
 
 
 def datasets(request):
@@ -69,11 +76,14 @@ def research(request):
 					thing = thing.lstrip(',').rstrip(',')
 					row.append(thing)
 
-			if "medrxiv" in row[2] and "medrxiv" in sources:
-				row.append("medrxiv")
-				papers.append(row)
-			elif "biorxiv" in row[2] and "biorxiv" in sources:
-				row.append("biorxiv")
+			try:
+				if "medrxiv" in row[2] and "medrxiv" in sources:
+					row.append("medrxiv")
+					papers.append(row)
+				elif "biorxiv" in row[2] and "biorxiv" in sources:
+					row.append("biorxiv")
+					papers.append(row)
+			except IndexError:
 				papers.append(row)
 	else:
 		f = open(settings.MEDIA_ROOT + "pubs_arxiv_latest.csv")
@@ -81,9 +91,13 @@ def research(request):
 
 		for item in lst:
 			row = []
+			done = False
+
 			for thing in item.split("\""):
-				if len(thing) > 3:
+				if len(thing) > 6:
+					done = True
 					thing = thing.lstrip(',').rstrip(',')
+
 					if "http" in thing:
 						things = thing.split(',')
 						for th in things:
@@ -91,8 +105,9 @@ def research(request):
 					else:
 						row.append(thing)
 
-			row.insert(3, "arxiv")
-			papers.append(row)
+			if done:
+				row.insert(3, "arxiv")
+				papers.append(row)
 
 	selled = ""
 	for item in sources:
