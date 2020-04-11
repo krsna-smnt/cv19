@@ -84,7 +84,8 @@ def retrieve():
 			except:
 				authors = None
 			try:
-				article_link = driver.find_element_by_xpath(base_path+"/div/div[3]/span/span[1]/a").get_attribute('href')
+
+				article_link = driver.find_element_by_xpath(base_path+"/div/div[1]/span/a").get_attribute('href')
 			except:
 				article_link = None
 

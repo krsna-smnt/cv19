@@ -13,5 +13,5 @@ urlpatterns = [
     path('uploadFiles/', views.uploadFiles, name='uploadFiles'),
     path('research/', views.research, name='research'),
     path('datasets/', views.datasets, name='datasets'),
-    path('dochange/', views.dochange, name='dochange'),
+    # path('dochange/', views.dochange, name='dochange'),
 ]
