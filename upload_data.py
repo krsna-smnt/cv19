@@ -17,7 +17,7 @@ import csv
 #from heat_color_reference import normalize0_1, rgb_vals
 
 driver = None
-url = "http://covid19tracker.pythonanywhere.com/uploadFiles/"
+url = "http://covid19tracker.co.in/uploadFiles/"
 
 
 def stop_handler(sig, frame):
