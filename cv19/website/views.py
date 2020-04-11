@@ -5,15 +5,54 @@ from .models import *
 
 # Create your views here.
 
+def dochange(request):
+	subregions = Subregion.objects.all()
+
+	f = open(settings.MEDIA_ROOT + "dist_codes.txt")
+	lst = f.readlines()
+	for l in lst:
+		wi = l.split(' ')
+		w = [th.rstrip('\n') for th in wi]
+
+		c = w[0]
+		sb = ""
+		for i in w:
+			if i == w[0]:
+				continue
+
+			sb += i
+			if i != w[-1]:
+				sb += " "
+
+		try:
+			subregion = subregions.get(name=sb)
+			subregion.code = c
+			subregion.save()
+		except:
+			print(c, sb)
+
+
 def home(request):
 	countries = Country.objects.all()
 	world = countries.get(name='World')
 	percentage = round(100 * world.new_infected / world.total_cases, 2)
+	
 	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage})
 
 
-def covidResearch(request):
-	sources = ['medrxiv', 'biorxiv']
+def india(request):
+	subregions = Subregion.objects.all()
+	india = Country.objects.get(name='India')
+
+	return render(request, 'website/india.html', {'subregions': subregions, 'india': india})
+
+
+def datasets(request):
+	return render(request, 'website/datasets.html', {})
+
+
+def research(request):
+	sources = ['arxiv']
 	if request.method == 'POST':
 		source = request.POST['sources']
 		sources = source.split('#')
@@ -58,7 +97,7 @@ def covidResearch(request):
 	selled = ""
 	for item in sources:
 		selled += item
-	return render(request, 'website/covidResearch.html', {'papers': papers, 'selled': selled})
+	return render(request, 'website/research.html', {'papers': papers, 'selled': selled})
 
 
 def saveCountries(file):
@@ -150,7 +189,7 @@ def saveCountryStats(file):
 
 def saveSubregionStats(file):
 	file.open()
-	lst = f.readlines()
+	lst = file.readlines()
 
 	subregions = Subregion.objects.all()
 	for line in lst:
@@ -158,11 +197,13 @@ def saveSubregionStats(file):
 
 		try:
 			subregion = subregions.get(name=vals[0].strip())
-			subregion.total_cases = vals[1].strip()
-			subregion.dead = vals[2].strip()
-			subregion.save()
-		except Exception as e:
-			print(e)
+		except:
+			subregion = Subregion()
+
+		subregion.name = vals[0].strip()
+		subregion.total_cases = vals[1].strip()
+		subregion.dead = vals[2].strip()
+		subregion.save()
 
 	file.close()
 
@@ -194,14 +235,18 @@ def uploadFiles(request):
 
 		afile = Afile()
 		afile.region = "india"
+		afile.content = "color"
+		afile.file = colorIndia
+		afile.save()
+
+		saveSubregions(afile.file)
+
+		afile = Afile()
+		afile.region = "india"
 		afile.content = "stats"
 		afile.file = statsIndia
 		afile.save()
 
-		afile = Afile()
-		afile.region = "india"
-		afile.content = "color"
-		afile.file = colorIndia
-		afile.save()
+		saveSubregionStats(afile.file)
 
 		return HttpResponse("Files Uploaded and Data Updated.")

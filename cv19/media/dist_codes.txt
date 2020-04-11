@@ -1,0 +1,594 @@
+ab1 Andaman Islands
+ab2 Nicobar Islands
+ab3 Adilabad
+ab4 Anantapur
+ab5 Chittoor
+ab6 Cuddapah
+ab7 East Godavari
+ab8 Guntur
+ab9 Hyderabad
+ab10 Karimnagar
+ab11 Khammam
+ab12 Krishna
+ab13 Kurnool
+ab14 Mahbubnagar
+ab15 Medak
+ab16 Nalgonda
+ab17 Nellore
+ab18 Nizamabad
+ab19 Prakasam
+ab20 Rangareddi
+ab21 Srikakulam
+ab22 Vishakhapatnam
+ab23 Vizianagaram
+ab24 Warangal
+ab25 West Godavari
+ab26 Changlang
+ab27 East Kameng
+ab28 East Siang
+ab29 Kurung Kumey
+ab30 Lohit
+ab31 Lower Dibang Valley
+ab32 Lower Subansiri
+ab33 Papum Pare
+ab34 Tawang
+ab35 Tirap
+ab36 Upper Dibang Valley
+ab37 Upper Siang
+ab38 Upper Subansiri
+ab39 West Kameng
+ab40 West Siang
+ab41 Barpeta
+ab42 Bongaigaon
+ab43 Cachar
+ab44 Darrang
+ab45 Dhemaji
+ab46 Dhuburi
+ab47 Dibrugarh
+ab48 Goalpara
+ab49 Golaghat
+ab50 Hailakandi
+ab51 Jorhat
+ab52 Kamrup
+ab53 Karbi Anglong
+ab54 Karimganj
+ab55 Kokrajhar
+ab56 Lakhimpur
+ab57 Marigaon
+ab58 Nagaon
+ab59 Nalbari
+ab60 North Cachar Hills
+ab61 Sibsagar
+ab62 Sonitpur
+ab63 Tinsukia
+ab64 Araria
+ab65 Aurangabad
+ab66 Banka
+ab67 Begusarai
+ab68 Bhabua
+ab69 Bhagalpur
+ab70 Bhojpur
+ab71 Buxar
+ab72 Darbhanga
+ab73 Gaya
+ab74 Gopalganj
+ab75 Jamui
+ab76 Jehanabad
+ab77 Katihar
+ab78 Khagaria
+ab79 Kishanganj
+ab80 Lakhisarai
+ab81 Madhepura
+ab82 Madhubani
+ab83 Munger
+ab84 Muzaffarpur
+ab85 Nalanda
+ab86 Nawada
+ab87 Pashchim Champaran
+ab88 Patna
+ab89 Purba Champaran
+ab90 Purnia
+ab91 Rohtas
+ab92 Saharsa
+ab93 Samastipur
+ab94 Saran
+ab95 Sheikhpura
+ab96 Sheohar
+ab97 Sitamarhi
+ab98 Siwan
+ab99 Supaul
+ab100 Vaishali
+ab101 Chandigarh
+ab102 Bastar
+ab103 Bilaspur
+ab104 Dantewada
+ab105 Dhamtari
+ab106 Durg
+ab107 Janjgir-Champa
+ab108 Jashpur
+ab109 Kanker
+ab110 Kawardha
+ab111 Korba
+ab112 Koriya
+ab113 Mahasamund
+ab114 Raigarh
+ab115 Raipur
+ab116 Raj Nandgaon
+ab117 Surguja
+ab118 Dadra and Nagar Haveli
+ab119 Daman
+ab120 Junagadh
+ab121 Delhi
+ab122 North Goa
+ab123 South Goa
+ab124 Ahmadabad
+ab125 Amreli
+ab126 Anand
+ab127 Banas Kantha
+ab128 Bharuch
+ab129 Bhavnagar
+ab130 Dahod
+ab131 Gandhinagar
+ab132 Jamnagar
+ab133 Junagadh
+ab134 Kachchh
+ab135 Kheda
+ab136 Mahesana
+ab137 Narmada
+ab138 Navsari
+ab139 Panch Mahals
+ab140 Patan
+ab141 Porbandar
+ab142 Rajkot
+ab143 Sabar Kantha
+ab144 Surat
+ab145 Surendranagar
+ab146 The Dangs
+ab147 Vadodara
+ab148 Valsad
+ab149 Ambala
+ab150 Bhiwani
+ab151 Faridabad
+ab152 Fatehabad
+ab153 Gurgaon
+ab154 Hisar
+ab155 Jhajjar
+ab156 Jind
+ab157 Kaithal
+ab158 Karnal
+ab159 Kurukshetra
+ab160 Mahendragarh
+ab161 Panchkula
+ab162 Panipat
+ab163 Rewari
+ab164 Rohtak
+ab165 Sirsa
+ab166 Sonepat
+ab167 Yamuna Nagar
+ab168 Bilaspur
+ab169 Chamba
+ab170 Hamirpur
+ab171 Kangra
+ab172 Kinnaur
+ab173 Kullu
+ab174 Lahul and Spiti
+ab175 Mandi
+ab176 Shimla
+ab177 Sirmaur
+ab178 Solan
+ab179 Una
+ab180 Anantnag (Kashmir South)
+ab181 Bagdam
+ab182 Baramula (Kashmir North)
+ab183 Doda
+ab184 Jammu
+ab185 Kargil
+ab186 Kathua
+ab187 Kupwara (Muzaffarabad)
+ab188 Ladakh (Leh)
+ab189 Pulwama
+ab190 Punch
+ab191 Rajauri
+ab192 Srinagar
+ab193 Udhampur
+ab194 Bokaro
+ab195 Chatra
+ab196 Deoghar
+ab197 Dhanbad
+ab198 Dumka
+ab199 Garhwa
+ab200 Giridih
+ab201 Godda
+ab202 Gumla
+ab203 Hazaribag
+ab204 Jamtara
+ab205 Koderma
+ab206 Latehar
+ab207 Lohardaga
+ab208 Pakur
+ab209 Palamu
+ab210 Pashchim Singhbhum
+ab211 Purba Singhbhum
+ab212 Ranchi
+ab213 Sahibganj
+ab214 Saraikela Kharsawan
+ab215 Simdega
+ab216 Bagalkot
+ab217 Bangalore Rural
+ab218 Bangalore Urban
+ab219 Belgaum
+ab220 Bellary
+ab221 Bidar
+ab222 Bijapur
+ab223 Chamrajnagar
+ab224 Chikmagalur
+ab225 Chitradurga
+ab226 Dakshin Kannad
+ab227 Davanagere
+ab228 Dharwad
+ab229 Gadag
+ab230 Gulbarga
+ab231 Hassan
+ab232 Haveri
+ab233 Kodagu
+ab234 Kolar
+ab235 Koppal
+ab236 Mandya
+ab237 Mysore
+ab238 Raichur
+ab239 Shimoga
+ab240 Tumkur
+ab241 Udupi
+ab242 Uttar Kannand
+ab243 Alappuzha
+ab244 Ernakulam
+ab245 Idukki
+ab246 Kannur
+ab247 Kasaragod
+ab248 Kollam
+ab249 Kottayam
+ab250 Kozhikode
+ab251 Malappuram
+ab252 Palakkad
+ab253 Pattanamtitta
+ab254 Thiruvananthapuram
+ab255 Thrissur
+ab256 Wayanad
+ab257 Kavaratti
+ab258 Anuppur
+ab259 Ashoknagar
+ab260 Balaghat
+ab261 Barwani
+ab262 Betul
+ab263 Bhind
+ab264 Bhopal
+ab265 Burhanpur
+ab266 Chhatarpur
+ab267 Chhindwara
+ab268 Damoh
+ab269 Datia
+ab270 Dewas
+ab271 Dhar
+ab272 Dindori
+ab273 East Nimar
+ab274 Guna
+ab275 Gwalior
+ab276 Harda
+ab277 Hoshangabad
+ab278 Indore
+ab279 Jabalpur
+ab280 Jhabua
+ab281 Katni
+ab282 Mandla
+ab283 Mandsaur
+ab284 Morena
+ab285 Narsinghpur
+ab286 Neemuch
+ab287 Panna
+ab288 Raisen
+ab289 Rajgarh
+ab290 Ratlam
+ab291 Rewa
+ab292 Sagar
+ab293 Satna
+ab294 Sehore
+ab295 Seoni
+ab296 Shahdol
+ab297 Shajapur
+ab298 Sheopur
+ab299 Shivpuri
+ab300 Sidhi
+ab301 Tikamgarh
+ab302 Ujjain
+ab303 Umaria
+ab304 Vidisha
+ab305 West Nimar
+ab306 Ahmednagar
+ab307 Akola
+ab308 Amravati
+ab309 Aurangabad
+ab310 Bhandara
+ab311 Bid
+ab312 Buldana
+ab313 Chandrapur
+ab314 Dhule
+ab315 Garhchiroli
+ab316 Gondiya
+ab317 Greater Bombay
+ab318 Hingoli
+ab319 Jalgaon
+ab320 Jalna
+ab321 Kolhapur
+ab322 Latur
+ab323 Nagpur
+ab324 Nanded
+ab325 Nandurbar
+ab326 Nashik
+ab327 Osmanabad
+ab328 Parbhani
+ab329 Pune
+ab330 Raigarh
+ab331 Ratnagiri
+ab332 Sangli
+ab333 Satara
+ab334 Sindhudurg
+ab335 Solapur
+ab336 Thane
+ab337 Wardha
+ab338 Washim
+ab339 Yavatmal
+ab340 Bishnupur
+ab341 Chandel
+ab342 Churachandpur
+ab343 East Imphal
+ab344 Senapati
+ab345 Tamenglong
+ab346 Thoubal
+ab347 Ukhrul
+ab348 West Imphal
+ab349 East Garo Hills
+ab350 East Khasi Hills
+ab351 Jaintia Hills
+ab352 Ri-Bhoi
+ab353 South Garo Hills
+ab354 West Garo Hills
+ab355 West Khasi Hills
+ab356 Aizawl
+ab357 Champhai
+ab358 Kolasib
+ab359 Lawngtlai
+ab360 Lunglei
+ab361 Mamit
+ab362 Saiha
+ab363 Serchhip
+ab364 Dimapur
+ab365 Kohima
+ab366 Mokokchung
+ab367 Mon
+ab368 Phek
+ab369 Tuensang
+ab370 Wokha
+ab371 Zunheboto
+ab372 Angul
+ab373 Baleshwar
+ab374 Baragarh
+ab375 Bhadrak
+ab376 Bolangir
+ab377 Boudh
+ab378 Cuttack
+ab379 Deogarh
+ab380 Dhenkanal
+ab381 Gajapati
+ab382 Ganjam
+ab383 Jagatsinghpur
+ab384 Jajpur
+ab385 Jharsuguda
+ab386 Kalahandi
+ab387 Kandhamal
+ab388 Kendrapara
+ab389 Keonjhar
+ab390 Khordha
+ab391 Koraput
+ab392 Malkangiri
+ab393 Mayurbhanj
+ab394 Nabarangpur
+ab395 Nayagarh
+ab396 Nuapada
+ab397 Puri
+ab398 Rayagada
+ab399 Sambalpur
+ab400 Sonepur
+ab401 Sundargarh
+ab402 Karaikal
+ab403 Mahe
+ab404 Puducherry
+ab405 Yanam
+ab406 Amritsar
+ab407 Bathinda
+ab408 Faridkot
+ab409 Fatehgarh Sahib
+ab410 Firozpur
+ab411 Gurdaspur
+ab412 Hoshiarpur
+ab413 Jalandhar
+ab414 Kapurthala
+ab415 Ludhiana
+ab416 Mansa
+ab417 Moga
+ab418 Muktsar
+ab419 Nawan Shehar
+ab420 Patiala
+ab421 Rupnagar
+ab422 Sangrur
+ab423 Ajmer
+ab424 Alwar
+ab425 Banswara
+ab426 Baran
+ab427 Barmer
+ab428 Bharatpur
+ab429 Bhilwara
+ab430 Bikaner
+ab431 Bundi
+ab432 Chittaurgarh
+ab433 Churu
+ab434 Dausa
+ab435 Dhaulpur
+ab436 Dungarpur
+ab437 Ganganagar
+ab438 Hanumangarh
+ab439 Jaipur
+ab440 Jaisalmer
+ab441 Jalor
+ab442 Jhalawar
+ab443 Jhunjhunun
+ab444 Jodhpur
+ab445 Karauli
+ab446 Kota
+ab447 Nagaur
+ab448 Pali
+ab449 Rajsamand
+ab450 Sawai Madhopur
+ab451 Sikar
+ab452 Sirohi
+ab453 Tonk
+ab454 Udaipur
+ab455 East
+ab456 North Sikkim
+ab457 South Sikkim
+ab458 West Sikkim
+ab459 Ariyalur
+ab460 Chennai
+ab461 Coimbatore
+ab462 Cuddalore
+ab463 Dharmapuri
+ab464 Dindigul
+ab465 Erode
+ab466 Kancheepuram
+ab467 Kanniyakumari
+ab468 Karur
+ab469 Madurai
+ab470 Nagapattinam
+ab471 Namakkal
+ab472 Nilgiris
+ab473 Perambalur
+ab474 Pudukkottai
+ab475 Ramanathapuram
+ab476 Salem
+ab477 Sivaganga
+ab478 Thanjavur
+ab479 Theni
+ab480 Thiruvallur
+ab481 Thiruvarur
+ab482 Thoothukudi
+ab483 Tiruchchirappalli
+ab484 Tirunelveli Kattabo
+ab485 Tiruvannamalai
+ab486 Vellore
+ab487 Villupuram
+ab488 Virudhunagar
+ab489 Dhalai
+ab490 North Tripura
+ab491 South Tripura
+ab492 West Tripura
+ab493 Agra
+ab494 Aligarh
+ab495 Allahabad
+ab496 Ambedkar Nagar
+ab497 Auraiya
+ab498 Azamgarh
+ab499 Badaun
+ab500 Baghpat
+ab501 Bahraich
+ab502 Ballia
+ab503 Balrampur
+ab504 Banda
+ab505 Bara Banki
+ab506 Bareilly
+ab507 Basti
+ab508 Bijnor
+ab509 Bulandshahr
+ab510 Chandauli
+ab511 Chitrakoot
+ab512 Deoria
+ab513 Etah
+ab514 Etawah
+ab515 Faizabad
+ab516 Farrukhabad
+ab517 Fatehpur
+ab518 Firozabad
+ab519 Gautam Buddha Nagar
+ab520 Ghaziabad
+ab521 Ghazipur
+ab522 Gonda
+ab523 Gorakhpur
+ab524 Hamirpur
+ab525 Hardoi
+ab526 Hathras
+ab527 Jalaun
+ab528 Jaunpur
+ab529 Jhansi
+ab530 Jyotiba Phule Nagar
+ab531 Kannauj
+ab532 Kanpur Dehat
+ab533 Kanpur
+ab534 Kaushambi
+ab535 Kushinagar
+ab536 Lakhimpur Kheri
+ab537 Lalitpur
+ab538 Lucknow
+ab539 Maharajganj
+ab540 Mahoba
+ab541 Mainpuri
+ab542 Mathura
+ab543 Mau
+ab544 Meerut
+ab545 Mirzapur
+ab546 Moradabad
+ab547 Muzaffarnagar
+ab548 Pilibhit
+ab549 Pratapgarh
+ab550 Rae Bareli
+ab551 Rampur
+ab552 Saharanpur
+ab553 Sant Kabir Nagar
+ab554 Sant Ravi Das Nagar
+ab555 Shahjahanpur
+ab556 Shravasti
+ab557 Siddharth Nagar
+ab558 Sitapur
+ab559 Sonbhadra
+ab560 Sultanpur
+ab561 Unnao
+ab562 Varanasi
+ab563 Almora
+ab564 Bageshwar
+ab565 Chamoli
+ab566 Champawat
+ab567 Dehra Dun
+ab568 Haridwar
+ab569 Naini Tal
+ab570 Pauri Garhwal
+ab571 Pithoragarh
+ab572 Rudra Prayag
+ab573 Tehri Garhwal
+ab574 Udham Singh Nagar
+ab575 Uttarkashi
+ab576 Bankura
+ab577 Barddhaman
+ab578 Birbhum
+ab579 Dakshin Dinajpur
+ab580 Darjiling
+ab581 East Midnapore
+ab582 Haora
+ab583 Hugli
+ab584 Jalpaiguri
+ab585 Kochbihar
+ab586 Kolkata
+ab587 Maldah
+ab588 Murshidabad
+ab589 Nadia
+ab590 North 24 Parganas
+ab591 Puruliya
+ab592 South 24 Parganas
+ab593 Uttar Dinajpur
+ab594 West Midnapore
