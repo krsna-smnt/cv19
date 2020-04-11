@@ -71,20 +71,24 @@ def research(request):
 
 		for item in lst:
 			row = []
+			done = False
+
 			for thing in item.split("\""):
 				if len(thing) > 3:
+					done = True
 					thing = thing.lstrip(',').rstrip(',')
 					row.append(thing)
 
-			try:
-				if "medrxiv" in row[2] and "medrxiv" in sources:
-					row.append("medrxiv")
+			if done:
+				try:
+					if "medrxiv" in row[2] and "medrxiv" in sources:
+						row.append("medrxiv")
+						papers.append(row)
+					elif "biorxiv" in row[2] and "biorxiv" in sources:
+						row.append("biorxiv")
+						papers.append(row)
+				except IndexError:
 					papers.append(row)
-				elif "biorxiv" in row[2] and "biorxiv" in sources:
-					row.append("biorxiv")
-					papers.append(row)
-			except IndexError:
-				papers.append(row)
 	else:
 		f = open(settings.MEDIA_ROOT + "pubs_arxiv_latest.csv")
 		lst = f.readlines()
