@@ -19,6 +19,9 @@ class Country(models.Model):
 	dead_color = models.CharField(max_length=7, null=True, blank=True)
 	infected_color = models.CharField(max_length=7, null=True, blank=True)
 	percentage_increase = models.FloatField(null=True, blank=True)
+	total_tested = models.IntegerField(default=None)
+	tested_per_million = models.IntegerField(default=None)
+
 
 	def __str__(self):
 		return self.name
@@ -49,3 +52,11 @@ class Afile(models.Model):
 
 	def __str__(self):
 		return self.region + " - " + self.content
+
+
+class Feedback(models.Model):
+	content = models.TextField()
+	timestamp = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return str(self.id)

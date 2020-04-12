@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse
 from django.conf import settings
 from .models import *
+import random
 
 # Create your views here.
 
@@ -197,10 +198,27 @@ def saveCountryStats(file):
 		country.dead_per_million = vals[9].strip()
 
 		try:
+			print("value is ", vals[10])
+			country.total_tested = int(vals[10].lstrip('"').rstrip('"'))
+		except ValueError:
+			pass
+		except:
+			pass
+
+		try:
+			print("value 11 is ", vals[11])
+			country.tested_per_million = vals[11].strip()
+		except ValueError:
+			pass
+		except:
+			pass
+
+		try:
 			if oldn != newn:
 				country.percentage_increase = round(100 * int(country.new_infected) / int(country.total_cases), 2)
 		except ZeroDivisionError:
 			country.percentage_increase = None
+
 		country.save()
 
 	file.close()
@@ -269,3 +287,25 @@ def uploadFiles(request):
 		saveSubregionStats(afile.file)
 
 		return HttpResponse("Files Uploaded and Data Updated.")
+
+
+def about(request):
+	makers = [['Abhay', 'https://github.com/abyswp/', 'abyswp'], ['Sumanth', 'https://github.com/krsna-smnt/', 'krsna-smnt']]
+	i = random.choice([1, 2])
+
+	if i == 2:
+		makers.reverse()
+
+	if request.method == 'GET':
+		return render(request, 'website/about.html', {'makers': makers})
+	else:
+		feedback = Feedback()
+		feedback.content = request.POST['content']
+		feedback.save()
+
+		return render(request, 'website/about.html', {'feedback': 'filled', 'makers': makers})
+
+
+def viewfeedback(request):
+	feedbacks = Feedback.objects.all().order_by('-timestamp')
+	return render(request, 'website/viewfeedback.html', {'feedbacks': feedbacks, 'makers': makers})
