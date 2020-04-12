@@ -184,8 +184,11 @@ def saveCountryStats(file):
 		country.name = vals[0].strip()
 
 		oldn = country.total_cases
+		print(oldn)
 		newn = vals[1].strip()
 
+		print(vals[0].strip())
+		print(vals[1].strip())
 		country.total_cases = vals[1].strip()
 		country.new_infected = vals[2].strip()
 		country.infected = vals[6].strip()
@@ -198,9 +201,13 @@ def saveCountryStats(file):
 
 		try:
 			if oldn != newn:
+				print("chng")
 				country.percentage_increase = round(100 * int(country.new_infected) / int(country.total_cases), 2)
 		except ZeroDivisionError:
+			print("err")
 			country.percentage_increase = None
+
+		print("done")
 		country.save()
 
 	file.close()
