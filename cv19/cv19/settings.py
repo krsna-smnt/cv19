@@ -26,7 +26,7 @@ SECRET_KEY = ')iwr6&hk5(=0pcbn^_w+o76r)vqw#q_9fix48vitn3m)i=fw%)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['covid19tracker.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'cv19.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'covid19tracker$coviddatabase',
-        'HOST': 'covid19tracker.mysql.pythonanywhere-services.com',
+        'NAME': 'coviddatabase',
+        'HOST': 'localhost',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'covid19tracker',
+        'USER': 'root',
         'PASSWORD': 'namo2014',
     },
 }
