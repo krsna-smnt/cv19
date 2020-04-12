@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = ')iwr6&hk5(=0pcbn^_w+o76r)vqw#q_9fix48vitn3m)i=fw%)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -75,20 +75,13 @@ WSGI_APPLICATION = 'cv19.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
     'default': {
         'NAME': 'coviddatabase',
         'HOST': 'localhost',
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
-        'PASSWORD': 'namo2014',
+        'PASSWORD': 'covidpassword',
     },
 }
 
