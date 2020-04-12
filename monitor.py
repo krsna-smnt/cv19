@@ -39,6 +39,10 @@ if __name__ == '__main__':
 	#det = gather_by_ip("106.212.231.152")
 	lat_list = long_list = []
 	for ip_addr in ip_addr_list:
+		count = 0
+		for ip_addr_dup in new_l:
+			if ip_addr_dup == ip_addr:
+				count += 1
 		ip_dets = gather_by_ip(ip_addr)
 		lat = float(ip_dets['latitude'])
 		lon = float(ip_dets['longitude'])
@@ -50,7 +54,7 @@ if __name__ == '__main__':
 		region = ip_dets['region']
 		postal = ip_dets['postal']
 		org = ip_dets['org']
-		entry = [ip_addr, lat, lon, timezone, org, city, country, country_code, region, postal]
+		entry = [ip_addr, count, lat, lon, timezone, org, city, country, country_code, region, postal]
 		print(entry)
 		f.writerow(entry)
 		#/var/log/apache2, other_vhosts_access.log, other_vhosts_access.log.1
