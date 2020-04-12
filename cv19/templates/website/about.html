@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<div class="container-fluid">
+		<div class="row">
+			<ul>
+				{% for maker in makers %}
+					<li>{{ maker.0 }} (<a target="_blank" href="{{ maker.1 }}">{{ maker.2 }}</a>)</li>
+				{% endfor %}
+			</ul>
+		</div>
+
+		<br><br>
+		{% if feedback == 'filled' %}
+		<div class="col-sm-12">
+			<p class="text-success">We have received your feedback</p>
+		</div>
+		{% endif %}
+		<div class="col-sm-4">
+			<div class="card">
+				<div class="card-header">
+					Anonymous Feedback
+				</div>
+				<div class="card-body">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-group">
+							<textarea name="content" class="form-control" placeholder="Enter Feedback" required></textarea>
+						</div>
+						<button type="submit" class="btn btn-info">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

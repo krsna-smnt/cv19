@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for feedback in feedbacks %}
+
+	<div class="container-fluid">
+		<p>{{ feedback.content }} -- <b>{{ feedback.timestamp }}</b></p>
+	</div>
+
+{% endfor %}
+
+{% endblock %}

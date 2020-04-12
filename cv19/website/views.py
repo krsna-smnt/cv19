@@ -2,49 +2,57 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse
 from django.conf import settings
 from .models import *
+import random
 
 # Create your views here.
 
-def dochange(request):
-	subregions = Subregion.objects.all()
+# def dochange(request):
+# 	subregions = Subregion.objects.all()
 
-	f = open(settings.MEDIA_ROOT + "dist_codes.txt")
-	lst = f.readlines()
-	for l in lst:
-		wi = l.split(' ')
-		w = [th.rstrip('\n') for th in wi]
+# 	f = open(settings.MEDIA_ROOT + "dist_codes.txt")
+# 	lst = f.readlines()
+# 	for l in lst:
+# 		wi = l.split(' ')
+# 		w = [th.rstrip('\n') for th in wi]
 
-		c = w[0]
-		sb = ""
-		for i in w:
-			if i == w[0]:
-				continue
+# 		c = w[-1]
+# 		sb = ""
+# 		for i in w:
+# 			if i == w[-1]:
+# 				continue
 
-			sb += i
-			if i != w[-1]:
-				sb += " "
+# 			sb += i
+# 			if i != w[-2]:
+# 				sb += " "
 
-		try:
-			subregion = subregions.get(name=sb)
-			subregion.code = c
-			subregion.save()
-		except:
-			print(c, sb)
+# 		try:
+# 			subregion = subregions.get(name=sb)
+# 			subregion.code = c
+# 			subregion.save()
+# 		except:
+# 			print(c, sb)
 
 
 def home(request):
 	countries = Country.objects.all()
 	world = countries.get(name='World')
 	percentage = round(100 * world.new_infected / world.total_cases, 2)
+
+	max_cases = countries.exclude(name='World').order_by('-total_cases')[0].total_cases
+	min_cases = countries.exclude(name='World').order_by('total_cases')[0].total_cases
 	
-	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage})
+	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage, 'max_cases': max_cases, 'min_cases': min_cases})
 
 
 def india(request):
+	countries = Country.objects.all()
 	subregions = Subregion.objects.all()
 	india = Country.objects.get(name='India')
 
-	return render(request, 'website/india.html', {'subregions': subregions, 'india': india})
+	max_cases = subregions.order_by('-total_cases')[0].total_cases
+	min_cases = subregions.order_by('total_cases')[0].total_cases
+
+	return render(request, 'website/india.html', {'subregions': subregions, 'india': india, 'max_cases': max_cases, 'min_cases': min_cases})
 
 
 def datasets(request):
@@ -59,31 +67,42 @@ def research(request):
 
 	papers = []
 	if 'arxiv' not in sources:
-		f = open(settings.MEDIA_ROOT + "pubs_latest.csv")
+		f = open(settings.MEDIA_ROOT + "pubs_latest.csv", encoding='utf-8')
 		lst = f.readlines()
 
 		for item in lst:
 			row = []
+			done = False
+
 			for thing in item.split("\""):
 				if len(thing) > 3:
+					done = True
 					thing = thing.lstrip(',').rstrip(',')
 					row.append(thing)
 
-			if "medrxiv" in row[2] and "medrxiv" in sources:
-				row.append("medrxiv")
-				papers.append(row)
-			elif "biorxiv" in row[2] and "biorxiv" in sources:
-				row.append("biorxiv")
-				papers.append(row)
+			if done:
+				try:
+					if "medrxiv" in row[2] and "medrxiv" in sources:
+						row.append("medrxiv")
+						papers.append(row)
+					elif "biorxiv" in row[2] and "biorxiv" in sources:
+						row.append("biorxiv")
+						papers.append(row)
+				except IndexError:
+					papers.append(row)
 	else:
-		f = open(settings.MEDIA_ROOT + "pubs_arxiv_latest.csv")
+		f = open(settings.MEDIA_ROOT + "pubs_arxiv_latest.csv", encoding='utf-8')
 		lst = f.readlines()
 
 		for item in lst:
 			row = []
+			done = False
+
 			for thing in item.split("\""):
-				if len(thing) > 3:
+				if len(thing) > 6:
+					done = True
 					thing = thing.lstrip(',').rstrip(',')
+
 					if "http" in thing:
 						things = thing.split(',')
 						for th in things:
@@ -91,8 +110,9 @@ def research(request):
 					else:
 						row.append(thing)
 
-			row.insert(3, "arxiv")
-			papers.append(row)
+			if done:
+				row.insert(3, "arxiv")
+				papers.append(row)
 
 	selled = ""
 	for item in sources:
@@ -165,8 +185,11 @@ def saveCountryStats(file):
 		country.name = vals[0].strip()
 
 		oldn = country.total_cases
+		print(oldn)
 		newn = vals[1].strip()
 
+		print(vals[0].strip())
+		print(vals[1].strip())
 		country.total_cases = vals[1].strip()
 		country.new_infected = vals[2].strip()
 		country.infected = vals[6].strip()
@@ -178,10 +201,29 @@ def saveCountryStats(file):
 		country.dead_per_million = vals[9].strip()
 
 		try:
+			print("value is ", vals[10])
+			country.total_tested = int(vals[10].lstrip('"').rstrip('"'))
+		except ValueError:
+			pass
+		except:
+			pass
+
+		try:
+			print("value 11 is ", vals[11])
+			country.tested_per_million = vals[11].strip()
+		except ValueError:
+			pass
+		except:
+			pass
+
+		try:
 			if oldn != newn:
+				print("chng")
 				country.percentage_increase = round(100 * int(country.new_infected) / int(country.total_cases), 2)
 		except ZeroDivisionError:
+			print("err")
 			country.percentage_increase = None
+
 		country.save()
 
 	file.close()
@@ -250,3 +292,25 @@ def uploadFiles(request):
 		saveSubregionStats(afile.file)
 
 		return HttpResponse("Files Uploaded and Data Updated.")
+
+
+def about(request):
+	makers = [['Abhay', 'https://github.com/abyswp/', 'abyswp'], ['Sumanth', 'https://github.com/krsna-smnt/', 'krsna-smnt']]
+	i = random.choice([1, 2])
+
+	if i == 2:
+		makers.reverse()
+
+	if request.method == 'GET':
+		return render(request, 'website/about.html', {'makers': makers})
+	else:
+		feedback = Feedback()
+		feedback.content = request.POST['content']
+		feedback.save()
+
+		return render(request, 'website/about.html', {'feedback': 'filled', 'makers': makers})
+
+
+def viewfeedback(request):
+	feedbacks = Feedback.objects.all().order_by('-timestamp')
+	return render(request, 'website/viewfeedback.html', {'feedbacks': feedbacks, 'makers': makers})
