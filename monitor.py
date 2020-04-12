@@ -1,6 +1,7 @@
 import ipinfo
 import os
 import csv
+import string
 
 access_token = "55873d1230f00c"
 handler = ipinfo.getHandler(access_token)
@@ -13,13 +14,39 @@ def gather_by_ip(ip_addr):
 def unzip_ips(file):
 	fh = open(file)
 	ip_addr_list = []
+
+	device_info_list = []
 	for line in fh:
 		#print(line)
 		info_list = line.split(" ")
-		#print(info_list)
+	
+		line = line.rstrip("\n")
+		line = line[::-1]
+		ctr = 0
+		txt = ""
+		for i in line:
+			if i == "\"":
+				if ctr < 2:
+					ctr += 1
+					continue
+				else: 
+					break
+			else:
+				txt += i
 		ip_addr_list.append(info_list[1])
+		device_info_list.append(txt[::-1])
 
-	return ip_addr_list
+		#print(txt[::-1])
+	
+
+
+		#print(info_list)
+		#print(dev_list)
+	
+	print(ip_addr_list)
+
+
+	return ip_addr_list, device_info_list
 
 
 
@@ -27,8 +54,8 @@ def unzip_ips(file):
 	
 if __name__ == '__main__':
 
-	new_l = unzip_ips("/home/sumanth/Desktop/cv19/hosts.txt")
-	print(new_l)
+	new_l, _  = unzip_ips("/home/sumanth/Desktop/cv19/hosts.txt")
+	#print(new_l)
 	#ip_addr_list = ["54.208.102.37", "106.212.231.152"]
 	ip_addr_list = list(set(new_l))
 	dir_path = os.path.dirname(os.path.realpath(__file__))
