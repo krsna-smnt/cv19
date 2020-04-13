@@ -26,13 +26,13 @@
 				<tr>
 					<td> {{ forloop.counter }}</td>
 					<td>
-						<h4><a href="{{ item.2 }}" target="_blank" style="color:#427899;">{{ item.0 }}</a></h4>
-						<span style="color: #555555">{{ item.1 }} <span class="rounded-lg" style="background-color: blue; color: white;">{{ item.3 }}</span> </span><br>
-						{% if selled == 'arxiv' %} <span style='font-size:10px;'>{{ item.5 }}</span><span><a href='{{ item.4 }}' target='_blank'>&nbsp;<b>[PDF]</b><a/></span><br>{% endif %}<br>
-						<a href="{{ item.2 }}" target="_blank">{{ item.2 }}</a>
+						<h4><a href="{{ item.link }}" target="_blank" style="color:#427899;">{{ item.title }}</a></h4>
+						<span style="color: #555555">{{ item.authors }} <span class="rounded-lg" style="background-color: blue; color: white;">{{ item.source }}</span> </span><br>
+						{% if selled == 'arxiv' %} <span style='font-size:10px;'>{{ item.date }}</span><span><a href='{{ item.pdf_link }}' target='_blank'>&nbsp;<b>[PDF]</b><a/></span><br>{% endif %}<br>
+						<a href="{{ item.link }}" target="_blank">{{ item.link }}</a>
 						{% if selled == 'arxiv' %}
-							{% if item.6 %}
-								<p>Comments: {{ item.6 }}</p>
+							{% if item.comments %}
+								<p>Comments: {{ item.comments }}</p>
 							{% endif %}
 						{% endif %}
 					</td>
