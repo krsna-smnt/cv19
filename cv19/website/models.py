@@ -60,3 +60,33 @@ class Feedback(models.Model):
 
 	def __str__(self):
 		return str(self.id)
+
+
+class UserTracking(models.Model):
+	ip_address = models.CharField(null=True, blank=True, max_length=50)
+	count = models.IntegerField(null=True, blank=True)
+	country = models.CharField(null=True, blank=True, max_length=50)
+	latitude = models.FloatField(null=True, blank=True)
+	longitude = models.FloatField(null=True, blank=True)
+	timezone = models.CharField(null=True, blank=True, max_length=50)
+	organization = models.CharField(null=True, blank=True, max_length=500)
+	city = models.CharField(null=True, blank=True, max_length=100)
+	country_code = models.CharField(null=True, blank=True, max_length=10)
+	region = models.CharField(null=True, blank=True, max_length=100)
+	postal = models.CharField(null=True, blank=True, max_length=10)
+
+	def __str__(self):
+		return self.ip_address
+
+
+class Publication(models.Model):
+	title = models.CharField(max_length=1000, null=True, blank=True)
+	authors = models.CharField(max_length=1000, null=True, blank=True)
+	link = models.CharField(max_length=500, null=True, blank=True)
+	source = models.CharField(max_length=10, null=True, blank=True)
+	pdf = models.CharField(max_length=500, null=True, blank=True)
+	date = models.CharField(max_length=400, null=True, blank=True)
+	comments = models.CharField(max_length=1000, null=True, blank=True)
+
+	def __str__(self):
+		return self.title
