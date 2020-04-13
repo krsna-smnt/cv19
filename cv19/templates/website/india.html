@@ -99,7 +99,6 @@
 
 	var indiaSeries = map.series.push(new am4maps.MapPolygonSeries());
 	indiaSeries.useGeodata = true;
-	indiaSeries.tooltip.getFillFromObject = false;
 	
 	var distSeries = map.series.push(new am4maps.MapPolygonSeries());
 	distSeries.geodataSource.url = "{% static 'assets/india_dist.json' %}";;
