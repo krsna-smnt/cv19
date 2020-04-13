@@ -68,7 +68,7 @@ def retrieve():
 	rel2 = "/cv19/pubs/"
 
 	f = csv.writer(open(dir_path+rel2+"pubs_" + datetime_stamp + ".csv" , "w"))
-	g = csv.writer(open(dir_path+rel_path+"pubs_latest"+".csv" , "w"))
+	g = csv.writer(open(dir_path+rel_path+"pubs_latest.csv" , "w"))
 
 
 	for i in range(1, total_pages+1):

@@ -108,8 +108,8 @@ def retrieve():
 
 
 	f = csv.writer(open(dir_path+rel2+"datasets_World_" + datetime_stamp + ".csv" , "w"))
-	g = csv.writer(open(dir_path+rel_path+"color_codes_World_latest" + ".csv" , "w"))
-	h = csv.writer(open(dir_path+rel_path+"datasets_World_latest" + ".csv" , "w"))
+	g = csv.writer(open(dir_path+rel_path+"color_codes_World_latest.csv" , "w"))
+	h = csv.writer(open(dir_path+rel_path+"datasets_World_latest.csv" , "w"))
 
 	for item in items_set:
 		ret = unpack_info(item)
