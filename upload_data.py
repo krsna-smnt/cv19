@@ -61,12 +61,15 @@ def retrieve():
 	try:
 		stats_india = driver.find_element_by_name("statsIndia")
 		stats_india.send_keys(dir_path+rel_path+"datasets_India_latest" + ".csv")
+		print("done")
 	except:
 		print("stats_india unsuccessful")
 
-	try:	
+	try:
 		stats_world = driver.find_element_by_name("statsWorld")
 		stats_world.send_keys(dir_path+rel_path+"datasets_World_latest" + ".csv")
+		#	stats_world.send_keys("/root/cv19/cv19/datasets/World/datasets_World_13-Apr-2020_00:58.csv")
+		print("done")
 	except:
 		print("stats_world unsuccessful")
 
@@ -85,6 +88,7 @@ def retrieve():
 	try:	
 		submit_button = driver.find_element_by_xpath("/html/body/div/form/button")
 		submit_button.click()
+		print("click")
 	except:
 		print("form submission unsuccessful")
 

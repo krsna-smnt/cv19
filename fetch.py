@@ -119,8 +119,8 @@ def retrieve():
 	rel2 = "/cv19/datasets/India/"
 
 	f = csv.writer(open(dir_path+rel2+"datasets_India_" + datetime_stamp + ".csv" , "w"))
-	g = csv.writer(open(dir_path+rel_path+"color_codes_India_latest"+".csv" , "w"))
-	h = csv.writer(open(dir_path+rel_path+"datasets_India_latest" + ".csv" , "w"))
+	g = csv.writer(open(dir_path+rel_path+"color_codes_India_latest.csv" , "w"))
+	h = csv.writer(open(dir_path+rel_path+"datasets_India_latest.csv" , "w"))
 	
 
 

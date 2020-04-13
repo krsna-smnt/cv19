@@ -5,17 +5,17 @@ import sys
 import requests
 
 def update_data_files():
-    os.system("python3 upload_data.py")
+    os.system("python upload_data.py")
 
 def run_india_fetch():
-    os.system("python3 fetch.py")
+    os.system("python fetch.py")
 
 def run_world_fetch():
-    os.system("python3 fetch_world.py")
+    os.system("python fetch_world.py")
 
 def run_research_fetch():
-    os.system("python3 fetch_research.py")
-    os.system("python3 fetch_arxiv.py")
+    os.system("python fetch_research.py")
+    os.system("python fetch_arxiv.py")
 
 def job():
     print("Performing Jobs")
@@ -34,7 +34,7 @@ def job():
     	print("Couldn't update data files")
 
 def job2():
-	print("performing job2: research papers fetch")	
+    print("performing job2: research papers fetch")
     try:
     	run_research_fetch()
     except:

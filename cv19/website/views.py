@@ -185,11 +185,8 @@ def saveCountryStats(file):
 		country.name = vals[0].strip()
 
 		oldn = country.total_cases
-		print(oldn)
 		newn = vals[1].strip()
 
-		print(vals[0].strip())
-		print(vals[1].strip())
 		country.total_cases = vals[1].strip()
 		country.new_infected = vals[2].strip()
 		country.infected = vals[6].strip()
@@ -200,28 +197,12 @@ def saveCountryStats(file):
 		country.cases_per_million = vals[8].strip()
 		country.dead_per_million = vals[9].strip()
 
-		try:
-			print("value is ", vals[10])
-			country.total_tested = int(vals[10].lstrip('"').rstrip('"'))
-		except ValueError:
-			pass
-		except:
-			pass
-
-		try:
-			print("value 11 is ", vals[11])
-			country.tested_per_million = vals[11].strip()
-		except ValueError:
-			pass
-		except:
-			pass
-
+#		country.total_tested = int(vals[10].lstrip('"').rstrip('"'))
+#		country.tested_per_million = vals[11].strip()
 		try:
 			if oldn != newn:
-				print("chng")
 				country.percentage_increase = round(100 * int(country.new_infected) / int(country.total_cases), 2)
 		except ZeroDivisionError:
-			print("err")
 			country.percentage_increase = None
 
 		country.save()
@@ -313,4 +294,4 @@ def about(request):
 
 def viewfeedback(request):
 	feedbacks = Feedback.objects.all().order_by('-timestamp')
-	return render(request, 'website/viewfeedback.html', {'feedbacks': feedbacks, 'makers': makers})
+	return render(request, 'website/viewfeedback.html', {'feedbacks': feedbacks, 'feedback': feedbacks})

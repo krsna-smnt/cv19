@@ -62,6 +62,9 @@ def unpack_info(info):
 		raw[i] = raw[i].strip()
 		if raw[i] == '' or raw[i] == ' ':
 			raw[i] = '0'
+		if raw[i] == 'N/A':
+			raw[i] = 0
+			continue
 		if i == 8 or i == 9:
 			raw[i] = float(raw[i])
 		else:
@@ -108,8 +111,8 @@ def retrieve():
 
 
 	f = csv.writer(open(dir_path+rel2+"datasets_World_" + datetime_stamp + ".csv" , "w"))
-	g = csv.writer(open(dir_path+rel_path+"color_codes_World_latest" + ".csv" , "w"))
-	h = csv.writer(open(dir_path+rel_path+"datasets_World_latest" + ".csv" , "w"))
+	g = csv.writer(open(dir_path+rel_path+"color_codes_World_latest.csv" , "w"))
+	h = csv.writer(open(dir_path+rel_path+"datasets_World_latest.csv" , "w"))
 
 	for item in items_set:
 		ret = unpack_info(item)
