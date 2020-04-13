@@ -62,6 +62,9 @@ def unpack_info(info):
 		raw[i] = raw[i].strip()
 		if raw[i] == '' or raw[i] == ' ':
 			raw[i] = '0'
+		if raw[i] == 'N/A':
+			raw[i] = 0
+			continue
 		if i == 8 or i == 9:
 			raw[i] = float(raw[i])
 		else:
