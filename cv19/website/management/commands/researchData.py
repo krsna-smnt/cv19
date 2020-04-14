@@ -34,7 +34,7 @@ def init_driver():
     options = Options()
     options.headless = True
 
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Firefox(options=options, executable_path='/usr/local/bin/geckodriver')
     driver.get(url)
 
     return True
@@ -79,3 +79,5 @@ class Command(BaseCommand):
                     pub = Publication(title=article_title, authors=authors, link=article_link)
                     pub.source = "biorxiv" if "biorxiv" in article_link else "medrxiv"
                     pub.save()
+
+        driver.quit()

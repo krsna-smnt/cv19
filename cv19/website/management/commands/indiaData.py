@@ -38,7 +38,7 @@ def init_driver():
     options = Options()
     options.headless = True
 
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Firefox(options=options, executable_path='/usr/local/bin/geckodriver')
     driver.get(url)
 
     return True
@@ -52,7 +52,7 @@ def unpack_info(info):
     dead_str = ""
     info = info.replace("\"","")
     inter = info.split('|')
-    
+
     district_name = inter[0].strip()
 
     if len(inter) > 1:
@@ -87,6 +87,7 @@ class Command(BaseCommand):
         min_infected = 99999999
         min_dead = 99999999
 
+        print("hi")
         if not init_driver():
             print("Failed to initialize")
             return
@@ -105,7 +106,7 @@ class Command(BaseCommand):
         datetime_stamp = datetime_obj.strftime("%d-%b-%Y_%H:%M")
         
         rel2 = "datasets/India/"
-
+        print("hloo")
         f = csv.writer(open(settings.MEDIA_ROOT+rel2+"datasets_India_" + datetime_stamp + ".csv" , "w"))
 
         for district in districts_set:
@@ -120,6 +121,7 @@ class Command(BaseCommand):
             min_dead = min(min_dead, ret[2])
 
         for district in districts_set:
+            print("yoyo")
             ret = unpack_info(district)
             if ret is None:
                 continue
@@ -129,6 +131,7 @@ class Command(BaseCommand):
             f.writerow(ret)
 
             try:
+                print("yes")
                 subregion = Subregion.objects.get(name=ret[0])
                 subregion.total_cases = ret[1]
                 subregion.dead = ret[2]
@@ -137,3 +140,5 @@ class Command(BaseCommand):
                 subregion.save()
             except:
                 print("no such subregion", ret[0])
+
+        driver.quit()

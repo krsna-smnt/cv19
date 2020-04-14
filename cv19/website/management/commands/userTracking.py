@@ -14,7 +14,7 @@ def unzip_ips(file):
     device_info_list = []
     for line in fh:
         info_list = line.split(" ")
-    
+
         line = line.rstrip("\n")
         line = line[::-1]
         ctr = 0
@@ -24,7 +24,7 @@ def unzip_ips(file):
                 if ctr < 2:
                     ctr += 1
                     continue
-                else: 
+                else:
                     break
             else:
                 txt += i
@@ -40,7 +40,7 @@ def gather_by_ip(ip_addr):
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        new_l, _  = unzip_ips(settings.MEDIA_ROOT + "hosts.txt")
+        new_l, _  = unzip_ips(settings.MEDIA_ROOT + "other_vhosts_access.log.1")
         ip_addr_list = list(set(new_l))
 
         lat_list = long_list = []
@@ -58,8 +58,19 @@ class Command(BaseCommand):
             country_code = ip_dets['country']
             country = ip_dets['country_name']
             region = ip_dets['region']
-            postal = ip_dets['postal']
-            org = ip_dets['org']
+
+            try:
+                postal = ip_dets['postal']
+            except:
+                pass
+
+            try:
+                org = ip_dets['org']
+            except:
+                pass
+
             entry = [ip_addr, count, lat, lon, timezone, org, city, country, country_code, region, postal]
-            userInfo = UserTracking(ip_address=ip_addr, count=count, country=country, latitude=lat, longitude=lon, timezone=timezone, organization=org, city=city, country_code=country_code, region=region, postal=postal)
-            userInfo.save()
+
+            if not UserTracking.objects.filter(ip_address=ip_addr).exists():
+                userInfo = UserTracking(ip_address=ip_addr, count=count, country=country, latitude=lat, longitude=lon, timezone=timezone, organization=org, city=city, country_code=country_code, region=region, postal=postal)
+                userInfo.save()

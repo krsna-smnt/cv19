@@ -34,7 +34,7 @@ def init_driver():
     options = Options()
     options.headless = True
 
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Firefox(options=options, executable_path='/usr/local/bin/geckodriver')
     driver.get(url)
 
     return True
@@ -105,3 +105,5 @@ class Command(BaseCommand):
                     pub.date = date
                     pub.comments = comments
                     pub.save()
+
+        driver.quit()
