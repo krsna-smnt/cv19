@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 import ipinfo, os, csv, string
 from website.models import UserTracking
 from django.conf import settings
-
+import os.path
 
 access_token = "55873d1230f00c"
 handler = ipinfo.getHandler(access_token)
@@ -40,26 +40,32 @@ def gather_by_ip(ip_addr):
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        new_l, _  = unzip_ips(settings.MEDIA_ROOT + "hosts.txt")
-        ip_addr_list = list(set(new_l))
+        files = ['/var/log/apache2/other_vhosts_access.log', '/var/log/apache2/other_vhosts_access.log.1']
 
-        lat_list = long_list = []
-        for ip_addr in ip_addr_list:
-            count = 0
-            for ip_addr_dup in new_l:
-                if ip_addr_dup == ip_addr:
-                    count += 1
-            ip_dets = gather_by_ip(ip_addr)
-            lat = float(ip_dets['latitude'])
-            lon = float(ip_dets['longitude'])
-            timezone = ip_dets['timezone']
+        for file in files:
+            if os.path.isfile(file):
+                new_l, _  = unzip_ips(settings.MEDIA_ROOT + "hosts.txt")
+                ip_addr_list = list(set(new_l))
 
-            city = ip_dets['city']
-            country_code = ip_dets['country']
-            country = ip_dets['country_name']
-            region = ip_dets['region']
-            postal = ip_dets['postal']
-            org = ip_dets['org']
-            entry = [ip_addr, count, lat, lon, timezone, org, city, country, country_code, region, postal]
-            userInfo = UserTracking(ip_address=ip_addr, count=count, country=country, latitude=lat, longitude=lon, timezone=timezone, organization=org, city=city, country_code=country_code, region=region, postal=postal)
-            userInfo.save()
+                lat_list = long_list = []
+                for ip_addr in ip_addr_list:
+                    count = 0
+                    for ip_addr_dup in new_l:
+                        if ip_addr_dup == ip_addr:
+                            count += 1
+                    ip_dets = gather_by_ip(ip_addr)
+                    lat = float(ip_dets['latitude'])
+                    lon = float(ip_dets['longitude'])
+                    timezone = ip_dets['timezone']
+
+                    city = ip_dets['city']
+                    country_code = ip_dets['country']
+                    country = ip_dets['country_name']
+                    region = ip_dets['region']
+                    postal = ip_dets['postal']
+                    org = ip_dets['org']
+                    entry = [ip_addr, count, lat, lon, timezone, org, city, country, country_code, region, postal]
+                    userInfo = UserTracking(ip_address=ip_addr, count=count, country=country, latitude=lat, longitude=lon, timezone=timezone, organization=org, city=city, country_code=country_code, region=region, postal=postal)
+                    userInfo.save()
+            else:
+                print("not a file")
