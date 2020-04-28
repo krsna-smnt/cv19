@@ -99,7 +99,7 @@ class Command(BaseCommand):
                 f.writerow(article)
 
                 if not Publication.objects.filter(title=title).exists():
-                    pub = Publication(title=title, authors=authors, link=link)
+                    pub = Publication(title=title, authors=authorz, link=link)
                     pub.source = "arxiv"
                     pub.pdf = pdf_link
                     pub.date = date

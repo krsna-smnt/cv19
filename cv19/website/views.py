@@ -8,7 +8,8 @@ import random
 
 def userTracking(request):
 	users = UserTracking.objects.all()
-	return render(request, 'website/userTracking.html', {'users': users})
+	count = users.count()
+	return render(request, 'website/userTracking.html', {'users': users, 'count': count})
 
 
 def home(request):
@@ -18,7 +19,7 @@ def home(request):
 
 	max_cases = countries.exclude(name='World').order_by('-total_cases')[0].total_cases
 	min_cases = countries.exclude(name='World').order_by('total_cases')[0].total_cases
-	
+
 	return render(request, 'website/home.html', {'countries': countries, 'world': world, 'percentage': percentage, 'max_cases': max_cases, 'min_cases': min_cases})
 
 
