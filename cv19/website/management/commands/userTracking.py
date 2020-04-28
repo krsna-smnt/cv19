@@ -12,6 +12,7 @@ def unzip_ips(file):
     ip_addr_list = []
 
     device_info_list = []
+    total_count = 0
     for line in fh:
         info_list = line.split(" ")
     
@@ -30,8 +31,9 @@ def unzip_ips(file):
                 txt += i
         ip_addr_list.append(info_list[1])
         device_info_list.append(txt[::-1])
+        total_count += 1
 
-    return ip_addr_list, device_info_list
+    return ip_addr_list, device_info_list, total_count
 
 def gather_by_ip(ip_addr):
     details = handler.getDetails(ip_addr)
@@ -44,7 +46,7 @@ class Command(BaseCommand):
 
         for file in files:
             if os.path.isfile(file):
-                new_l, _  = unzip_ips(settings.MEDIA_ROOT + "hosts.txt")
+                new_l, _, _  = unzip_ips(settings.MEDIA_ROOT + "hosts.txt")
                 ip_addr_list = list(set(new_l))
 
                 lat_list = long_list = []
