@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand, CommandError
-import ipinfo, os, csv, string, sys, signal, time
 from website.models import *
 from django.conf import settings
 from selenium import webdriver
@@ -11,7 +10,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
-
+import ipinfo, os, csv, string, sys, signal, time
 from .heat_color_reference import normalize0_1, rgb_vals
 
 
@@ -50,6 +49,8 @@ def unpack_info(info):
     for inf in info_list:
         raw.append(inf.text)
 
+    raw.pop(0)
+
     raw[0] = raw[0].strip()
     for i in range(1,10):
         raw[i] = raw[i].strip()
@@ -82,17 +83,16 @@ class Command(BaseCommand):
             print("Failed to initialize")
             return
 
-        table_div = driver.find_element_by_id("main_table_countries_today")
+        table_div = driver.find_element_by_xpath("/html/body/div[3]/div[3]/div/div[3]/div[1]/div/table/tbody[1]")
         table_rows_odd = table_div.find_elements_by_class_name("odd")
+        #print(len(table_rows_odd)
         table_rows_even = table_div.find_elements_by_class_name("even")
-
         table_rows_odd += table_rows_even
         items = table_rows_odd
 
         items_set = list(set(items))
-
         print("%d administrative entities found\n" % len(items_set))
-
+        
         datetime_obj = datetime.now()
         datetime_stamp = datetime_obj.strftime("%d-%b-%Y_%H:%M")
 
